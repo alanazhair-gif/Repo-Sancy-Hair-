@@ -7,7 +7,9 @@ import { instagramHref, navLinks, siteConfig, whatsappHref, whatsappNumbers } fr
 import { InstagramIcon, WhatsAppIcon } from "./icons";
 import { Logo } from "./logo";
 
-export function SiteHeader({ logoSrc }: { logoSrc: string | null }) {
+type LogoSources = { onLight: string | null; onDark: string | null };
+
+export function SiteHeader({ logo }: { logo: LogoSources }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -67,7 +69,7 @@ export function SiteHeader({ logoSrc }: { logoSrc: string | null }) {
 
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <a href="#top" aria-label={`${siteConfig.name} home`}>
-          <Logo src={logoSrc} />
+          <Logo src={solid ? logo.onLight : logo.onDark} className="h-14" />
         </a>
 
         <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">

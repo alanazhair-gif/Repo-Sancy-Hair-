@@ -15,7 +15,7 @@ import { photos } from "@/lib/site";
 export default function Home() {
   return (
     <>
-      <SiteHeader logoSrc={siteAsset(photos.logo.file)} />
+      <SiteHeader logo={{ onLight: siteAsset(photos.logo.file), onDark: siteAsset(photos.logoOnDark.file) }} />
       <main className="flex-1">
         <Hero />
         <ProductCategories />

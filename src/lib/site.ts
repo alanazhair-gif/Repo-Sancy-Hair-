@@ -262,11 +262,18 @@ export const faqs = [
 ];
 
 export const photos = {
+  // Same logo twice: dark "LUXURIOUS" line for light backgrounds, white line for dark ones.
   logo: {
     file: "logo.png",
-    alt: "Sancy Hair logo",
-    brief: "Logo Sancy HAIR bản KHÔNG có dòng \"RAW VIETNAMESE HAIR\", nền trong suốt",
-    size: "PNG/SVG, cao ≥ 120px",
+    alt: "Sancy Hair Luxurious logo",
+    brief: "Logo Sancy HAIR Luxurious, nền trong suốt, chữ LUXURIOUS màu đen",
+    size: "PNG 1000×331",
+  },
+  logoOnDark: {
+    file: "logo-light.png",
+    alt: "Sancy Hair Luxurious logo",
+    brief: "Logo Sancy HAIR Luxurious, nền trong suốt, chữ LUXURIOUS màu trắng",
+    size: "PNG 1000×331",
   },
   heroWeighing: {
     file: "prices/weighing.jpg",

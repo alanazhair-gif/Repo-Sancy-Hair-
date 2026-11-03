@@ -54,7 +54,7 @@ export function ProductCategories() {
                     <div className="mt-auto flex items-end justify-between gap-3 border-t border-border pt-4">
                       {product.fromJetBlack !== null && product.fromColors !== null ? (
                         <div>
-                          <p className="text-xs text-muted-foreground">From, #1 Jet Black</p>
+                          <p className="text-xs text-muted-foreground">From, #1 Jet Black, Super Quality</p>
                           <p className="tabular mt-0.5 text-2xl font-extrabold">
                             {formatUsd(product.fromJetBlack)}
                             <span className="text-sm font-semibold text-muted-foreground">/kg</span>

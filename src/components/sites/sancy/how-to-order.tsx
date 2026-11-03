@@ -92,9 +92,9 @@ export function HowToOrder() {
         <Reveal className="mt-20">
           <div className="flex flex-col gap-4 border-b border-border pb-5 md:flex-row md:items-end md:justify-between">
             <div>
-              <p className="text-xs font-bold uppercase tracking-[0.3em] text-pink">Real orders</p>
+              <p className="text-xs font-bold uppercase tracking-[0.3em] text-pink">Proof</p>
               <h3 className="mt-3 text-2xl font-extrabold sm:text-4xl">
-                Weighed and packed. <span className="font-accent font-medium text-pink italic">Before it ships.</span>
+                Real orders, <span className="font-accent font-medium text-pink italic">weighed and packed.</span>
               </h3>
             </div>
             <a
