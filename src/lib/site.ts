@@ -79,7 +79,7 @@ export const products: Product[] = [
     summary: "Loose hair for strand-by-strand work: keratin, micro and custom bonds.",
     fromJetBlack: 350,
     fromColors: 520,
-    photo: productPhoto("bulk", "Bulk hair, #1 Jet Black, tied in a bundle", "Bulk #1 Jet Black buộc chun, nền sáng, thấy rõ độ dài"),
+    photo: productPhoto("bulk", "Bulk hair bundles hanging from a rod", "Bulk #1 Jet Black buộc chun, nền sáng, thấy rõ độ dài"),
   },
   {
     id: "straight-weft",
@@ -88,7 +88,7 @@ export const products: Product[] = [
     summary: "Straight weft, sold in 100g bundles.",
     fromJetBlack: 430,
     fromColors: 580,
-    photo: productPhoto("straight-weft", "A Straight Weft bundle laid flat", "Bundle Straight Weft trải thẳng, thấy rõ đường may"),
+    photo: productPhoto("straight-weft", "Straight Weft bundles, #1 Jet Black, laid flat", "Bundle Straight Weft trải thẳng, thấy rõ đường may"),
   },
   {
     id: "genius-weft",
@@ -97,7 +97,7 @@ export const products: Product[] = [
     summary: "Genius weft, sold in 100g bundles.",
     fromJetBlack: 530,
     fromColors: 680,
-    photo: productPhoto("genius-weft", "Close-up of a Genius Weft track", "Cận đường weft của Genius Weft"),
+    photo: productPhoto("genius-weft", "Blonde Genius Weft bundles", "Cận đường weft của Genius Weft"),
   },
   {
     id: "flat-weft",
@@ -115,7 +115,7 @@ export const products: Product[] = [
     summary: "Pre-bonded tips in five shapes.",
     fromJetBlack: 505,
     fromColors: 655,
-    photo: productPhoto("keratin-tip", "Keratin tips in I, U, V, Flat and Nano shapes", "Keratin tip xếp đủ 5 kiểu I / U / V / Flat / Nano"),
+    photo: productPhoto("keratin-tip", "Keratin tip bundles in blonde and brown shades", "Keratin tip xếp đủ 5 kiểu I / U / V / Flat / Nano"),
   },
   {
     id: "tape-in",
@@ -124,7 +124,7 @@ export const products: Product[] = [
     summary: "Tape extensions for salon installs.",
     fromJetBlack: 515,
     fromColors: 665,
-    photo: productPhoto("tape-in", "Tape-in extensions lined up", "Tape-in xếp hàng, thấy rõ băng keo"),
+    photo: productPhoto("tape-in", "Tape-in bundles lined up in black, brown and blonde", "Tape-in xếp hàng, thấy rõ băng keo"),
   },
   {
     id: "clip-in",
@@ -133,7 +133,7 @@ export const products: Product[] = [
     summary: "Clip-ins your clients can put on at home.",
     fromJetBlack: 505,
     fromColors: 655,
-    photo: productPhoto("clip-in", "Normal and Seamless clip-ins", "Clip-in Normal và Seamless, thấy rõ kẹp"),
+    photo: productPhoto("clip-in", "A seven-piece clip-in set, numbered by row", "Clip-in Normal và Seamless, thấy rõ kẹp"),
   },
   {
     id: "lace",
@@ -142,7 +142,7 @@ export const products: Product[] = [
     summary: "Made by hand in our closure and frontal room.",
     fromJetBlack: null,
     fromColors: null,
-    photo: productPhoto("lace", "A lace frontal on a mannequin head", "Frontal / closure trên đầu mannequin ở phòng làm closure"),
+    photo: productPhoto("lace", "Close-up of a lace frontal held in hand", "Frontal / closure trên đầu mannequin ở phòng làm closure"),
   },
 ];
 
