@@ -29,8 +29,14 @@ export function MarginCalculator({ media }: { media?: React.ReactNode }) {
 
   const message = `PRICE ${product.name}, ${tier === "jet" ? "#1 Jet Black" : "Colors"}, ${formatQty(grams)}`;
 
+  // data-calc-* hooks let the Shopify export (scripts/export-shopify.mjs) re-wire this without React.
   return (
-    <section id="prices" className="scroll-mt-20 bg-blush py-24 sm:py-28">
+    <section
+      id="prices"
+      className="scroll-mt-20 bg-blush py-24 sm:py-28"
+      data-calc
+      data-calc-products={JSON.stringify(pricedProducts.map((p) => [p.id, p.name, p.fromJetBlack, p.fromColors]))}
+    >
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[5fr_7fr] lg:items-center lg:gap-14 lg:px-8">
         <Reveal>
           <p className="text-xs font-bold uppercase tracking-[0.3em] text-pink">Your margin</p>
@@ -57,6 +63,7 @@ export function MarginCalculator({ media }: { media?: React.ReactNode }) {
                   <button
                     key={p.id}
                     type="button"
+                    data-calc-product={p.id}
                     aria-pressed={p.id === productId}
                     onClick={() => setProductId(p.id)}
                     className={cn(
@@ -82,6 +89,7 @@ export function MarginCalculator({ media }: { media?: React.ReactNode }) {
                   <button
                     key={value}
                     type="button"
+                    data-calc-tier={value}
                     aria-pressed={tier === value}
                     onClick={() => setTier(value)}
                     className={cn(
@@ -102,6 +110,7 @@ export function MarginCalculator({ media }: { media?: React.ReactNode }) {
                   <button
                     key={q}
                     type="button"
+                    data-calc-qty={q}
                     aria-pressed={grams === q}
                     onClick={() => setGrams(q)}
                     className={cn(
@@ -118,15 +127,21 @@ export function MarginCalculator({ media }: { media?: React.ReactNode }) {
             <dl className="mt-7 grid grid-cols-3 divide-x divide-border rounded-2xl bg-paper py-5 text-center">
               <div>
                 <dt className="text-xs text-muted-foreground">Bundles</dt>
-                <dd className="tabular mt-1 text-2xl font-extrabold">{bundles}</dd>
+                <dd className="tabular mt-1 text-2xl font-extrabold" data-calc-out="bundles">
+                  {bundles}
+                </dd>
               </div>
               <div>
                 <dt className="text-xs text-muted-foreground">Cost / bundle</dt>
-                <dd className="tabular mt-1 text-2xl font-extrabold">{formatUsd(perBundle, 2)}</dd>
+                <dd className="tabular mt-1 text-2xl font-extrabold" data-calc-out="per-bundle">
+                  {formatUsd(perBundle, 2)}
+                </dd>
               </div>
               <div>
                 <dt className="text-xs text-muted-foreground">Total</dt>
-                <dd className="tabular mt-1 text-2xl font-extrabold text-pink">{formatUsd(total)}</dd>
+                <dd className="tabular mt-1 text-2xl font-extrabold text-pink" data-calc-out="total">
+                  {formatUsd(total)}
+                </dd>
               </div>
             </dl>
 
@@ -143,14 +158,20 @@ export function MarginCalculator({ media }: { media?: React.ReactNode }) {
                 placeholder="Your price"
                 value={resale}
                 onChange={(e) => setResale(e.target.value)}
+                data-calc-resale
                 className="tabular h-16 w-full rounded-xl border border-input bg-white px-4 text-lg font-semibold outline-none focus:border-pink focus:ring-2 focus:ring-pink/25"
               />
               <div className="flex h-16 flex-col justify-center rounded-xl bg-ink px-4 text-white" aria-live="polite">
                 <p className="flex items-baseline justify-between gap-2 text-xs text-white/60">
                   You keep
-                  {hasResale && <span className="tabular hidden sm:inline">{formatUsd(marginPerBundle, 2)} / bundle</span>}
+                  <span className="tabular hidden sm:inline" data-calc-out="keep-per">
+                    {hasResale ? `${formatUsd(marginPerBundle, 2)} / bundle` : ""}
+                  </span>
                 </p>
-                <p className={cn("tabular text-xl font-extrabold", hasResale && marginPerBundle < 0 && "text-pink-soft")}>
+                <p
+                  className={cn("tabular text-xl font-extrabold", hasResale && marginPerBundle < 0 && "text-pink-soft")}
+                  data-calc-out="keep"
+                >
                   {hasResale ? formatUsd(marginPerBundle * bundles) : "-"}
                 </p>
               </div>
@@ -158,6 +179,7 @@ export function MarginCalculator({ media }: { media?: React.ReactNode }) {
 
             <a
               href={whatsappHref(message)}
+              data-calc-link
               target="_blank"
               rel="noopener noreferrer"
               className="mt-6 flex items-center justify-center gap-2 rounded-full bg-pink py-4 text-sm font-bold text-white transition-colors hover:bg-pink-deep"

@@ -31,9 +31,10 @@ export function HeroGallery({ shots, video }: HeroGalleryProps) {
     strip.scrollBy({ left: atEnd ? -strip.scrollWidth : strip.clientWidth * 0.75, behavior: "smooth" });
   };
 
+  // data-gallery-* hooks let the Shopify export re-wire the thumbnails without React.
   return (
-    <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-3 backdrop-blur-sm">
-      <div className="relative aspect-[16/11] overflow-hidden rounded-[1.5rem] bg-ink-soft">
+    <div className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-3 backdrop-blur-sm" data-gallery>
+      <div className="relative aspect-[16/11] overflow-hidden rounded-[1.5rem] bg-ink-soft" data-gallery-main>
         {playing && video.src ? (
           <>
             <video src={video.src} controls autoPlay playsInline className="absolute inset-0 size-full object-cover" />
@@ -92,11 +93,12 @@ export function HeroGallery({ shots, video }: HeroGalleryProps) {
       </div>
 
       <div className="relative mt-3">
-        <ul ref={stripRef} className="flex snap-x gap-3 overflow-x-auto pr-12 [scrollbar-width:none]">
+        <ul ref={stripRef} data-gallery-strip className="flex snap-x gap-3 overflow-x-auto pr-12 [scrollbar-width:none]">
           {shots.map((s, i) => (
             <li key={s.file} className="w-[28%] shrink-0 snap-start sm:w-[23%]">
               <button
                 type="button"
+                data-gallery-thumb
                 onClick={() => {
                   setActive(i);
                   setPlaying(false);
@@ -120,6 +122,7 @@ export function HeroGallery({ shots, video }: HeroGalleryProps) {
         <button
           type="button"
           onClick={scrollStrip}
+          data-gallery-next
           aria-label="More photos"
           className="absolute top-1/2 right-1 flex size-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-ink shadow-lg transition-colors hover:bg-pink hover:text-white"
         >

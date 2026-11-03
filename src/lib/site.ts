@@ -48,6 +48,8 @@ export type PhotoBrief = {
   // What to shoot, for the team (Vietnamese).
   brief: string;
   size: string;
+  // "contain" shows the whole photo (studio shots, the portrait color chart) instead of cropping it.
+  fit?: "cover" | "contain";
 };
 
 export type Product = {
@@ -66,6 +68,7 @@ const productPhoto = (id: string, alt: string, brief: string): PhotoBrief => ({
   alt,
   brief,
   size: "1200×900",
+  fit: "contain",
 });
 
 export const products: Product[] = [
@@ -292,6 +295,7 @@ export const photos = {
     alt: "Sancy color chart with all 27 color codes",
     brief: "Ảnh bảng màu thật 27 màu (color-collection.png trong folder Instagram), không có #1B",
     size: "1600×900",
+    fit: "contain",
   },
   factorySign: {
     file: "factory/sign.jpg",

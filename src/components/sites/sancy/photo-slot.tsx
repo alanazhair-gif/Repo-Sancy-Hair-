@@ -17,9 +17,15 @@ export function PhotoSlot({ photo, sizes, className, tone = "light", compact = f
   const src = siteAsset(photo.file);
 
   return (
-    <div className={cn("relative overflow-hidden", className)}>
+    <div className={cn("relative overflow-hidden", src && photo.fit === "contain" && "bg-white", className)}>
       {src ? (
-        <Image src={src} alt={photo.alt} fill sizes={sizes} className="object-cover" />
+        <Image
+          src={src}
+          alt={photo.alt}
+          fill
+          sizes={sizes}
+          className={photo.fit === "contain" ? "object-contain" : "object-cover"}
+        />
       ) : (
         <div
           className={cn(
