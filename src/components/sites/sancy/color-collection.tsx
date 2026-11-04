@@ -42,13 +42,13 @@ export function ColorCollection() {
 
           <Reveal delay={100}>
             <div className="flex h-full flex-col gap-3">
-              <div className="flex items-center gap-4 rounded-3xl p-4 text-white sm:p-5" style={{ background: jetBlack.swatch }}>
+              <div className="flex items-center gap-4 rounded-3xl p-3 text-white sm:gap-5" style={{ background: jetBlack.swatch }}>
                 <PhotoSlot
                   photo={photos.jetBlack}
-                  sizes="96px"
+                  sizes="176px"
                   tone="dark"
                   compact
-                  className="size-16 shrink-0 rounded-2xl"
+                  className="aspect-[4/3] w-28 shrink-0 rounded-2xl sm:w-40"
                 />
                 <div className="min-w-0 flex-1">
                   <p className="flex items-baseline gap-2">
@@ -57,7 +57,7 @@ export function ColorCollection() {
                   </p>
                   <PriceLine price={fromJetBlack} label="#1 Jet Black" tone="dark" />
                 </div>
-                <span className="hidden rounded-full bg-pink px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.15em] sm:block">
+                <span className="mr-2 hidden rounded-full bg-pink px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.15em] sm:block">
                   Own price
                 </span>
               </div>
