@@ -33,7 +33,7 @@ export function QuoteCta() {
               className={
                 i === 0
                   ? "inline-flex items-center justify-center gap-3 rounded-full bg-ink px-5 py-3.5 text-sm sm:px-7 sm:py-4 font-bold transition-transform hover:-translate-y-0.5"
-                  : "inline-flex items-center justify-center gap-3 rounded-full border border-white/50 px-5 py-3.5 text-sm sm:px-7 sm:py-4 font-bold transition-colors hover:bg-white hover:text-pink"
+                  : "inline-flex items-center justify-center gap-3 rounded-full bg-white px-5 py-3.5 text-sm text-pink sm:px-7 sm:py-4 font-bold transition-transform hover:-translate-y-0.5"
               }
             >
               <WhatsAppIcon className="size-5" />
