@@ -298,18 +298,18 @@ export const photos = {
     fit: "contain",
   },
   factorySign: {
-    file: "factory/sign.jpg",
-    alt: "The SANCY HAIR FACTORY sign at the factory in Yen Thuy, Hoa Binh",
-    brief: "Biển SANCY HAIR FACTORY trước xưởng Yên Thủy",
+    file: "factory/sign-team.jpg",
+    alt: "The Sancy team under the SANCY HAIR FACTORY sign in Yen Thuy, Hoa Binh",
+    brief: "Đội ngũ trước biển SANCY HAIR FACTORY ở xưởng Yên Thủy",
     size: "1200×900",
   },
 } satisfies Record<string, PhotoBrief>;
 
 export const factoryStepPhotos: PhotoBrief[] = [
-  { file: "factory/washed.jpg", alt: "Hair being washed at the Sancy factory", brief: "Gội tóc trong chậu ở xưởng", size: "900×900" },
+  { file: "factory/step-washed.jpg", alt: "Hair being washed by hand at the Sancy factory", brief: "Gội tóc trong chậu ở xưởng", size: "900×900" },
   { file: "factory/dried.jpg", alt: "Hair drying on racks at the Sancy factory", brief: "Tóc phơi / sấy trên giá", size: "900×900" },
   { file: "factory/straightened.jpg", alt: "Hair being straightened at the Sancy factory", brief: "Ép thẳng tóc bằng máy ép", size: "900×900" },
-  { file: "factory/checked.jpg", alt: "Hair being checked and weighed at the Sancy factory", brief: "Kiểm hàng: chải, đo dài, cân", size: "900×900" },
+  { file: "factory/step-checked.jpg", alt: "A Sancy staff member checking hair bundles at the workshop", brief: "Kiểm hàng tại xưởng", size: "900×900" },
 ];
 
 export const orderPhotos: PhotoBrief[] = [1, 2, 3].map((n) => ({

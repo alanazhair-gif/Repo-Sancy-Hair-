@@ -1,6 +1,6 @@
 import { ArrowDownRight, Award, CreditCard, MapPin, Palette, PackageCheck, Ruler } from "lucide-react";
 import { siteAsset } from "@/lib/assets";
-import { factoryStepPhotos, formatUsd, marqueeWords, products, siteConfig, whatsappHref } from "@/lib/site";
+import { formatUsd, marqueeWords, products, siteConfig, whatsappHref } from "@/lib/site";
 import { HeroGallery, type HeroShot } from "./hero-gallery";
 import { WhatsAppIcon } from "./icons";
 import { Reveal } from "./reveal";
@@ -16,23 +16,38 @@ const facts = [
 
 const factoryVideo = "hero/factory.mp4";
 
+// The strongest factory shots lead; the step photos stay in the Factory section below.
 const heroPhotos = [
+  {
+    file: "hero/workshop-banner.jpg",
+    alt: "The Sancy factory workshop, staff in pink uniforms at long tables under the Sancy banner",
+    brief: "Xưởng rộng, băng rôn Sancy phía cuối",
+  },
+  {
+    file: "hero/aerial.jpg",
+    alt: "Aerial view of the Sancy factory buildings",
+    brief: "Ảnh flycam toàn cảnh xưởng",
+  },
+  {
+    file: "hero/team.jpg",
+    alt: "The Sancy team in front of the SANCY HAIR FACTORY sign",
+    brief: "Đội ngũ trước biển SANCY HAIR FACTORY",
+  },
+  {
+    file: "hero/bulk-table.jpg",
+    alt: "Bundles of hair in several colors laid out on a table in the Sancy workshop",
+    brief: "Tóc nhiều màu xếp trên bàn, công nhân phía sau",
+  },
+  {
+    file: "hero/workers.jpg",
+    alt: "Sancy staff working on hair at their tables",
+    brief: "Công nhân làm tóc tại bàn, cận hơn",
+  },
   {
     file: "hero.jpg",
     alt: "A Sancy worker sorting wavy hair on the drying racks at the factory",
     brief: "Công nhân phân loại tóc trên giá phơi",
   },
-  {
-    file: "factory-main.jpg",
-    alt: "The closure and frontal room at the Sancy factory, staff working at long tables",
-    brief: "Phòng làm closure và frontal",
-  },
-  {
-    file: "factory-detail.jpg",
-    alt: "Hair being straightened and laid out on a workbench at the Sancy factory",
-    brief: "Tóc ép thẳng, xếp trên bàn",
-  },
-  ...factoryStepPhotos,
 ];
 
 const trustChips = [

@@ -49,8 +49,8 @@ export function Factory() {
         <div className="mt-6 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
           <Reveal className="relative aspect-[16/9] overflow-hidden rounded-3xl lg:aspect-auto lg:min-h-[26rem]">
             <Image
-              src="/sites/sancy/factory-main.jpg"
-              alt="The closure and frontal room at the Sancy factory, staff working at long tables"
+              src="/sites/sancy/factory/workshop-wide.jpg"
+              alt="The Sancy factory workshop, rows of staff working on hair at long tables"
               fill
               sizes="(min-width: 1024px) 55vw, 95vw"
               className="object-cover"
@@ -58,8 +58,8 @@ export function Factory() {
           </Reveal>
           <Reveal delay={100} className="relative aspect-square overflow-hidden rounded-3xl">
             <Image
-              src="/sites/sancy/factory-detail.jpg"
-              alt="Hair being straightened and laid out on a workbench at the Sancy factory"
+              src="/sites/sancy/factory/washing-team.jpg"
+              alt="Two Sancy workers in gloves washing hair by hand at the factory"
               fill
               sizes="(min-width: 1024px) 38vw, 95vw"
               className="object-cover"
