@@ -1,11 +1,33 @@
 import { instagramHref, navLinks, photos, products, siteConfig, whatsappHref, whatsappNumbers } from "@/lib/site";
 import { siteAsset } from "@/lib/assets";
+import { Minus, Plus } from "lucide-react";
 import { InstagramIcon, WhatsAppIcon } from "./icons";
 import { Logo } from "./logo";
 
 const heading = "text-xs font-bold uppercase tracking-[0.25em] text-white";
 const list = "mt-5 space-y-3 text-sm text-white/60";
 const link = "transition-colors hover:text-pink";
+
+type FooterLink = { label: string; href: string };
+
+const footerNavs: { title: string; links: FooterLink[] }[] = [
+  { title: "Products", links: products.map((p) => ({ label: p.name, href: "#products" })) },
+  { title: "Company", links: navLinks.map((l) => ({ label: l.label, href: l.href })) },
+];
+
+function LinkList({ links, className }: { links: FooterLink[]; className: string }) {
+  return (
+    <ul className={className}>
+      {links.map((l) => (
+        <li key={l.label}>
+          <a href={l.href} className={link}>
+            {l.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 export function SiteFooter() {
   return (
@@ -17,31 +39,28 @@ export function SiteFooter() {
           <p className="mt-4 text-sm text-white/60">Factory: {siteConfig.address}</p>
         </div>
 
-        <nav aria-label="Products">
-          <h3 className={heading}>Products</h3>
-          <ul className={list}>
-            {products.map((p) => (
-              <li key={p.id}>
-                <a href="#products" className={link}>
-                  {p.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {/* Mobile: Products and Company fold open with + and close with -. Native <details>, so it needs no script on Shopify. */}
+        <div className="col-span-2 divide-y divide-white/10 border-y border-white/10 sm:hidden">
+          {footerNavs.map((nav) => (
+            <details key={nav.title} className="group">
+              <summary className="flex cursor-pointer list-none items-center justify-between py-4 [&::-webkit-details-marker]:hidden">
+                <h3 className={heading}>{nav.title}</h3>
+                <span className="flex size-7 items-center justify-center rounded-full bg-white/10 text-pink">
+                  <Plus className="size-4 group-open:hidden" aria-hidden="true" />
+                  <Minus className="hidden size-4 group-open:block" aria-hidden="true" />
+                </span>
+              </summary>
+              <LinkList links={nav.links} className="space-y-3 pb-5 text-sm text-white/60" />
+            </details>
+          ))}
+        </div>
 
-        <nav aria-label="Company">
-          <h3 className={heading}>Company</h3>
-          <ul className={list}>
-            {navLinks.map((l) => (
-              <li key={l.href}>
-                <a href={l.href} className={link}>
-                  {l.label}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
+        {footerNavs.map((nav) => (
+          <nav key={nav.title} aria-label={nav.title} className="hidden sm:block">
+            <h3 className={heading}>{nav.title}</h3>
+            <LinkList links={nav.links} className={list} />
+          </nav>
+        ))}
 
         <div className="col-span-2 sm:col-span-1">
           <h3 className={heading}>Contact</h3>
