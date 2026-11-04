@@ -47,7 +47,7 @@ export function Factory() {
         </Reveal>
 
         <div className="mt-4 grid gap-3 sm:mt-6 sm:gap-4 lg:grid-cols-[1.4fr_1fr]">
-          <Reveal className="relative aspect-[5/4] overflow-hidden rounded-2xl sm:aspect-[16/9] sm:rounded-3xl lg:aspect-auto lg:min-h-[26rem]">
+          <Reveal className="relative aspect-[5/3] overflow-hidden rounded-2xl sm:aspect-[16/9] sm:rounded-3xl lg:aspect-auto lg:min-h-[26rem]">
             <Image
               src="/sites/sancy/factory/workshop-hall.jpg"
               alt="The Sancy factory workshop, rows of staff working on hair at long tables"
