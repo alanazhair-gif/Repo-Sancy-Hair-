@@ -24,7 +24,7 @@ const heroPhotos = [
     brief: "Xưởng rộng, băng rôn Sancy phía cuối",
   },
   {
-    file: "hero/aerial-factory.jpg",
+    file: "hero/aerial-factory-2.jpg",
     alt: "Aerial view of the Sancy Hair factory in Yen Thuy, Hoa Binh, Vietnam, with the building outlined",
     brief: "Ảnh flycam toàn cảnh xưởng",
   },
