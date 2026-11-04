@@ -57,7 +57,8 @@ export function HeroGallery({ shots, video }: HeroGalleryProps) {
                 fill
                 priority={active === 0}
                 sizes="(min-width: 1024px) 45vw, 95vw"
-                className="animate-ken-burns object-cover"
+                quality={90}
+                className="object-cover"
               />
             ) : (
               <Placeholder shot={shot} large />

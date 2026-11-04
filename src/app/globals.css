@@ -54,7 +54,6 @@
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
   --animate-marquee: marquee 40s linear infinite;
-  --animate-ken-burns: ken-burns 24s ease-out infinite alternate;
 }
 
 :root {
@@ -106,11 +105,6 @@
   to { transform: translateX(-50%); }
 }
 
-@keyframes ken-burns {
-  from { transform: scale(1.04); }
-  to { transform: scale(1.14) translate(-1.5%, -1%); }
-}
-
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -150,8 +144,5 @@
   .reveal[data-state="hidden"] {
     opacity: 1;
     transform: none;
-  }
-  .animate-ken-burns {
-    animation: none;
   }
 }
