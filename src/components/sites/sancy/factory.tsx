@@ -58,8 +58,8 @@ export function Factory() {
           </Reveal>
           <Reveal delay={100} className="relative hidden aspect-square overflow-hidden rounded-3xl sm:block">
             <Image
-              src="/sites/sancy/factory/hackling.jpg"
-              alt="A Sancy worker sorting hair on a hackling board, with tied bundles on the table in front of her"
+              src="/sites/sancy/factory/styling.jpg"
+              alt="A Sancy staff member straightening hair on a mannequin head with a flat iron and brush"
               fill
               sizes="(min-width: 1024px) 38vw, 95vw"
               className="object-cover"
