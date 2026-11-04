@@ -99,45 +99,45 @@ export function Hero() {
         Sancy Hair
       </p>
 
-      <div className="relative mx-auto grid max-w-7xl gap-12 px-4 pt-32 pb-16 sm:px-6 md:pt-40 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16 lg:px-8 lg:pt-44 lg:pb-20">
+      <div className="relative mx-auto grid max-w-7xl gap-10 px-4 pt-28 pb-12 sm:gap-12 sm:px-6 sm:pb-16 md:pt-40 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-16 lg:px-8 lg:pt-44 lg:pb-20">
         <Reveal>
-          <p className="text-xs font-bold uppercase tracking-[0.3em] text-pink">Factory direct · MOQ 100g</p>
-          <h1 className="mt-6 text-[2.6rem] leading-[1.02] font-extrabold tracking-tight sm:text-6xl xl:text-7xl">
+          <p className="text-[0.7rem] font-bold uppercase tracking-[0.22em] text-pink sm:text-xs sm:tracking-[0.3em]">Factory direct · MOQ 100g</p>
+          <h1 className="mt-4 text-[2.5rem] leading-[1.02] sm:mt-6 font-extrabold tracking-tight sm:text-6xl xl:text-7xl">
             Vietnamese human hair,
             <br />
             <span className="font-accent font-medium text-pink italic">priced for resellers.</span>
           </h1>
-          <p className="mt-6 max-w-lg text-base leading-relaxed text-white/65 sm:text-lg">{siteConfig.positioning}</p>
+          <p className="mt-4 max-w-lg text-[0.95rem] leading-relaxed text-white/65 sm:mt-6 sm:text-lg">{siteConfig.positioning}</p>
 
-          <p className="mt-8 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <p className="mt-6 flex flex-wrap items-baseline gap-x-3 gap-y-1 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3.5 sm:mt-8 sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0">
             <span className="text-sm text-white/55">Bulk from</span>
-            <span className="tabular text-4xl font-extrabold">
+            <span className="tabular text-[2rem] font-extrabold sm:text-4xl">
               {formatUsd(bulk.fromJetBlack ?? 0)}
               <span className="text-lg font-semibold text-white/55">/kg</span>
             </span>
-            <span className="text-sm text-white/55">#1 Jet Black · 50cm · Super Quality</span>
+            <span className="w-full text-xs text-white/55 sm:w-auto sm:text-sm">#1 Jet Black · 50cm · Super Quality</span>
           </p>
 
-          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+          <div className="mt-6 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:gap-3">
             <a
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 rounded-full bg-pink px-7 py-4 text-sm font-bold transition-colors hover:bg-pink-deep"
+              className="inline-flex items-center justify-center gap-3 rounded-full bg-pink px-7 py-3.5 text-sm font-bold sm:py-4 transition-colors hover:bg-pink-deep"
             >
               <WhatsAppIcon className="size-5" />
               Send &quot;PRICE&quot; on WhatsApp
             </a>
             <a
               href="#prices"
-              className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-7 py-4 text-sm font-semibold transition-colors hover:border-white hover:bg-white/5"
+              className="group inline-flex items-center justify-center gap-2 rounded-full border border-white/25 px-7 py-3.5 text-sm font-semibold sm:py-4 transition-colors hover:border-white hover:bg-white/5"
             >
               Work out your margin
               <ArrowDownRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:translate-y-0.5" />
             </a>
           </div>
 
-          <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm text-white/55">
+          <ul className="mt-6 flex flex-col gap-2 text-[0.8rem] text-white/55 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:text-sm">
             {trustChips.map(({ icon: Icon, label }) => (
               <li key={label} className="flex items-center gap-2">
                 <Icon className="size-4 text-pink" />
@@ -155,16 +155,16 @@ export function Hero() {
         </Reveal>
       </div>
 
-      <div className="relative mx-auto max-w-7xl px-4 pb-10 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 pb-8 sm:px-6 sm:pb-10 lg:px-8">
         <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           {facts.map(({ icon: Icon, value, label }) => (
-            <div key={label} className="flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4 sm:p-5">
-              <span className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-pink/15 text-pink">
+            <div key={label} className="flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-3.5 sm:flex-row sm:items-center sm:gap-4 sm:p-5">
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-pink/15 text-pink sm:size-11">
                 <Icon className="size-5" />
               </span>
               <div className="flex min-w-0 flex-col-reverse">
                 <dt className="text-xs leading-snug text-white/55">{label}</dt>
-                <dd className="text-xl font-extrabold sm:text-2xl">{value}</dd>
+                <dd className="text-lg font-extrabold sm:text-2xl">{value}</dd>
               </div>
             </div>
           ))}
