@@ -19,7 +19,7 @@ const factoryVideo = "hero/factory.mp4";
 // The strongest factory shots lead; the step photos stay in the Factory section below.
 const heroPhotos = [
   {
-    file: "hero/aerial-factory-2.jpg",
+    file: "hero/aerial-factory-3.jpg",
     alt: "Aerial view of the Sancy Hair factory in Yen Thuy, Hoa Binh, Vietnam, with the building outlined",
     brief: "Ảnh flycam toàn cảnh xưởng",
   },

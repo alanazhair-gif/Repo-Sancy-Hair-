@@ -7,7 +7,7 @@ export const siteConfig = {
   positioning:
     "Wholesale-grade Vietnamese human hair, bulk and weft, priced so resellers keep the margin.",
   address: "Yen Thuy, Hoa Binh, Vietnam",
-  salesHours: "13:00 to 22:00 Vietnam time (GMT+7)",
+  salesHours: "8:30 to 22:00 Vietnam time (GMT+7)",
   instagram: "sancyhair_extensions",
 };
 
@@ -198,7 +198,7 @@ export const factorySteps = ["Washed", "Dried", "Straightened", "Checked"];
 export const orderSteps = [
   {
     title: "Message us on WhatsApp",
-    body: "Send \"PRICE\" to either official number. Sales replies from 13:00 to 22:00 Vietnam time.",
+    body: "Send \"PRICE\" to either official number. Sales replies from 8:30 to 22:00 Vietnam time.",
   },
   {
     title: "Tell us what you need",
