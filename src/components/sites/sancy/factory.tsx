@@ -46,8 +46,8 @@ export function Factory() {
           </div>
         </Reveal>
 
-        <div className="mt-4 grid grid-cols-[1.4fr_1fr] gap-3 sm:mt-6 sm:grid-cols-1 sm:gap-4 lg:grid-cols-[1.4fr_1fr]">
-          <Reveal className="relative aspect-[4/5] overflow-hidden rounded-2xl sm:aspect-[16/9] sm:rounded-3xl lg:aspect-auto lg:min-h-[26rem]">
+        <div className="mt-4 grid gap-3 sm:mt-6 sm:gap-4 lg:grid-cols-[1.4fr_1fr]">
+          <Reveal className="relative aspect-[5/4] overflow-hidden rounded-2xl sm:aspect-[16/9] sm:rounded-3xl lg:aspect-auto lg:min-h-[26rem]">
             <Image
               src="/sites/sancy/factory/workshop-hall.jpg"
               alt="The Sancy factory workshop, rows of staff working on hair at long tables"
@@ -56,7 +56,7 @@ export function Factory() {
               className="object-cover"
             />
           </Reveal>
-          <Reveal delay={100} className="relative aspect-auto overflow-hidden rounded-2xl sm:aspect-square sm:rounded-3xl">
+          <Reveal delay={100} className="relative hidden aspect-square overflow-hidden rounded-3xl sm:block">
             <Image
               src="/sites/sancy/factory/hair-combing.jpg"
               alt="Gloved hands combing a bundle of hair on a work table at the Sancy factory"
