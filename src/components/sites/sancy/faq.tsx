@@ -5,7 +5,7 @@ import { Reveal } from "./reveal";
 
 export function Faq() {
   return (
-    <section id="faq" className="scroll-mt-20 bg-paper pb-24 sm:pb-28">
+    <section id="faq" className="scroll-mt-20 bg-paper pb-16 sm:pb-28">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[5fr_7fr] lg:gap-14 lg:px-8">
         {/* Left column sticks while the questions scroll, so it never sits empty. */}
         <Reveal className="lg:sticky lg:top-28 lg:self-start">
@@ -14,7 +14,7 @@ export function Faq() {
             Straight answers <span className="font-accent font-medium text-pink italic">to what buyers ask.</span>
           </h2>
 
-          <div className="mt-8 rounded-[1.75rem] bg-blush p-6">
+          <div className="mt-6 rounded-[1.75rem] bg-blush p-5 sm:mt-8 sm:p-6">
             <p className="font-bold">Still have a question?</p>
             <p className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
               <Clock className="size-4 text-pink" aria-hidden="true" />
@@ -27,10 +27,10 @@ export function Faq() {
                     href={whatsappHref("Hi Sancy, I have a question.", n.digits)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center gap-3 rounded-xl bg-white px-4 py-3 transition-colors hover:bg-pink hover:text-white"
+                    className="flex items-center gap-3 rounded-xl bg-white px-3.5 py-3 transition-colors sm:px-4 hover:bg-pink hover:text-white"
                   >
                     <WhatsAppIcon className="size-5 shrink-0" />
-                    <span className="tabular font-bold">{n.display}</span>
+                    <span className="tabular font-bold whitespace-nowrap">{n.display}</span>
                     <span className="ml-auto text-xs opacity-70">{n.label}</span>
                   </a>
                 </li>

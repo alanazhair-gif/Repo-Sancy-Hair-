@@ -10,8 +10,8 @@ const link = "transition-colors hover:text-pink";
 export function SiteFooter() {
   return (
     <footer className="bg-ink text-white">
-      <div className="mx-auto grid max-w-7xl gap-x-10 gap-y-12 px-4 py-16 sm:grid-cols-2 sm:px-6 lg:grid-cols-[1.5fr_1fr_0.8fr_1.2fr] lg:px-8 lg:py-20">
-        <div>
+      <div className="mx-auto grid max-w-7xl grid-cols-2 gap-x-6 gap-y-10 px-4 py-12 sm:gap-x-10 sm:gap-y-12 sm:py-16 sm:px-6 lg:grid-cols-[1.5fr_1fr_0.8fr_1.2fr] lg:px-8 lg:py-20">
+        <div className="col-span-2 sm:col-span-1">
           <Logo src={siteAsset(photos.logoOnDark.file)} className="h-14 w-fit" />
           <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/60">{siteConfig.positioning}</p>
           <p className="mt-4 text-sm text-white/60">Factory: {siteConfig.address}</p>
@@ -43,7 +43,7 @@ export function SiteFooter() {
           </ul>
         </nav>
 
-        <div>
+        <div className="col-span-2 sm:col-span-1">
           <h3 className={heading}>Contact</h3>
           <ul className={list}>
             {whatsappNumbers.map((n) => (

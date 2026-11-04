@@ -19,7 +19,7 @@ export function Factory() {
           </p>
         </Reveal>
 
-        <Reveal delay={100} className="mt-12 grid gap-4 md:grid-cols-2">
+        <Reveal delay={100} className="mt-8 grid gap-3 sm:mt-12 sm:gap-4 md:grid-cols-2">
           <div className="rounded-3xl border border-white/10 bg-ink-soft p-6">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-white/50">The usual route</p>
             <ol className="mt-5 flex flex-wrap items-center gap-2">
@@ -46,8 +46,8 @@ export function Factory() {
           </div>
         </Reveal>
 
-        <div className="mt-6 grid gap-4 lg:grid-cols-[1.4fr_1fr]">
-          <Reveal className="relative aspect-[16/9] overflow-hidden rounded-3xl lg:aspect-auto lg:min-h-[26rem]">
+        <div className="mt-4 grid grid-cols-[1.4fr_1fr] gap-3 sm:mt-6 sm:grid-cols-1 sm:gap-4 lg:grid-cols-[1.4fr_1fr]">
+          <Reveal className="relative aspect-[4/5] overflow-hidden rounded-2xl sm:aspect-[16/9] sm:rounded-3xl lg:aspect-auto lg:min-h-[26rem]">
             <Image
               src="/sites/sancy/factory/workshop-hall.jpg"
               alt="The Sancy factory workshop, rows of staff working on hair at long tables"
@@ -56,7 +56,7 @@ export function Factory() {
               className="object-cover"
             />
           </Reveal>
-          <Reveal delay={100} className="relative aspect-square overflow-hidden rounded-3xl">
+          <Reveal delay={100} className="relative aspect-auto overflow-hidden rounded-2xl sm:aspect-square sm:rounded-3xl">
             <Image
               src="/sites/sancy/factory/hair-combing.jpg"
               alt="Gloved hands combing a bundle of hair on a work table at the Sancy factory"
@@ -68,12 +68,12 @@ export function Factory() {
         </div>
 
         <Reveal delay={100}>
-          <ol className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <ol className="mt-4 grid grid-cols-2 gap-3 sm:mt-6 sm:grid-cols-4">
             {factorySteps.map((step, i) => (
               <li
                 key={step}
                 className={cn(
-                  "rounded-2xl border border-white/10 p-3 pb-4",
+                  "rounded-2xl border border-white/10 p-2.5 pb-3.5 sm:p-3 sm:pb-4",
                   i === factorySteps.length - 1 && "border-pink bg-pink/10",
                 )}
               >
@@ -81,10 +81,10 @@ export function Factory() {
                   photo={factoryStepPhotos[i]}
                   sizes="(min-width: 640px) 22vw, 45vw"
                   tone="dark"
-                  className="mb-4 aspect-square rounded-xl"
+                  className="mb-3 aspect-square rounded-xl sm:mb-4"
                 />
-                <span className="px-2 text-xs font-bold text-pink">0{i + 1}</span>
-                <p className="mt-1 px-2 text-lg font-extrabold uppercase tracking-wide">{step}</p>
+                <span className="px-1.5 text-xs font-bold text-pink sm:px-2">0{i + 1}</span>
+                <p className="mt-1 px-1.5 text-base font-extrabold uppercase tracking-wide sm:px-2 sm:text-lg">{step}</p>
               </li>
             ))}
           </ol>

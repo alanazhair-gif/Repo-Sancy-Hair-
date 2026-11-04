@@ -8,7 +8,7 @@ const priceTags = ["\"From\" prices", "USD per kg", "50cm", "Super Quality"];
 
 export function ProductCategories() {
   return (
-    <section id="products" className="scroll-mt-20 bg-paper py-24 sm:py-28">
+    <section id="products" className="scroll-mt-20 bg-paper py-16 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Products"
