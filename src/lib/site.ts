@@ -154,36 +154,36 @@ export const pricedProducts = products.filter(
 export const formatUsd = (value: number, digits = 0) =>
   `$${value.toLocaleString("en-US", { minimumFractionDigits: digits, maximumFractionDigits: digits })}`;
 
-// Swatch values are screen approximations for browsing only.
-export const jetBlack = { code: "#1", name: "Jet Black", swatch: "#0d0c0d" };
+// Swatch values are sampled from colors/color-collection.jpg, in the same order.
+export const jetBlack = { code: "#1", name: "Jet Black", swatch: "#141418" };
 
 export const colorCodes: { code: string; swatch: string }[] = [
-  { code: "#2C", swatch: "#2a1c17" },
-  { code: "#2ash", swatch: "#2d2a28" },
-  { code: "#3", swatch: "#3b2a22" },
-  { code: "#4", swatch: "#4a3326" },
-  { code: "#4ash", swatch: "#4b443f" },
-  { code: "#5C", swatch: "#5e3c2a" },
-  { code: "#6C", swatch: "#6e4630" },
-  { code: "#7", swatch: "#7a5638" },
-  { code: "#7C", swatch: "#8a5a35" },
-  { code: "#8ash", swatch: "#8f7f6e" },
-  { code: "#10", swatch: "#9b7652" },
-  { code: "#14", swatch: "#b8956a" },
-  { code: "#14C", swatch: "#c09060" },
-  { code: "#16C", swatch: "#c9a070" },
-  { code: "#17", swatch: "#c7a77c" },
-  { code: "#17ash", swatch: "#b9a891" },
-  { code: "#18B", swatch: "#d8bf98" },
-  { code: "#22ash", swatch: "#d9cdb6" },
-  { code: "#22C", swatch: "#e2c79a" },
-  { code: "#24", swatch: "#e8d3a6" },
-  { code: "#30", swatch: "#9c4a22" },
-  { code: "#33", swatch: "#6b2a1e" },
-  { code: "#60", swatch: "#efe3c8" },
-  { code: "#613", swatch: "#f1dfa8" },
-  { code: "#Silver", swatch: "#c8c8cc" },
-  { code: "#AZ13", swatch: "linear-gradient(135deg, #3b2a22 0%, #8f7f6e 50%, #e2c79a 100%)" },
+  { code: "#2C", swatch: "#221e1f" },
+  { code: "#6C", swatch: "#2b1e1d" },
+  { code: "#3", swatch: "#45271e" },
+  { code: "#2ash", swatch: "#553423" },
+  { code: "#4ash", swatch: "#724b33" },
+  { code: "#4", swatch: "#946744" },
+  { code: "#7C", swatch: "#604737" },
+  { code: "#10", swatch: "#8d6242" },
+  { code: "#7", swatch: "#d8b177" },
+  { code: "#14", swatch: "#e4bc7e" },
+  { code: "#5C", swatch: "#bb9b68" },
+  { code: "#8ash", swatch: "#d4b780" },
+  { code: "#24", swatch: "#d6b381" },
+  { code: "#22C", swatch: "#d4b076" },
+  { code: "#22ash", swatch: "#d4b580" },
+  { code: "#613", swatch: "#cba979" },
+  { code: "#60", swatch: "#e8dab4" },
+  { code: "#Silver", swatch: "#d2b27f" },
+  { code: "#17ash", swatch: "#a9937b" },
+  { code: "#18B", swatch: "#a79d88" },
+  { code: "#33", swatch: "#f0bf8f" },
+  { code: "#16C", swatch: "#aa7d5f" },
+  { code: "#14C", swatch: "#98664f" },
+  { code: "#30", swatch: "#de9f5a" },
+  { code: "#17", swatch: "#6f2816" },
+  { code: "#AZ13", swatch: "#741226" },
 ];
 
 export const middlemanChain = [
@@ -291,10 +291,10 @@ export const photos = {
     size: "1200×900",
   },
   colorChart: {
-    file: "colors/color-collection.png",
+    file: "colors/color-collection.jpg",
     alt: "Sancy color chart with all 27 color codes",
-    brief: "Ảnh bảng màu thật 27 màu (color-collection.png trong folder Instagram), không có #1B",
-    size: "1600×900",
+    brief: "Ảnh bảng màu 27 màu (San pham/Color Collections), không có #1B",
+    size: "2112×1188",
     fit: "contain",
   },
   factorySign: {
