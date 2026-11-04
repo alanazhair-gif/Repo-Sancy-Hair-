@@ -142,7 +142,7 @@ export const products: Product[] = [
     summary: "Made by hand in our closure and frontal room.",
     fromJetBlack: null,
     fromColors: null,
-    photo: { ...productPhoto("lace", "Lace closures and frontals laid out in rows at the factory, one lifted by hand", "Frontal / closure trên đầu mannequin ở phòng làm closure"), file: "products/lace-1.jpg" },
+    photo: { ...productPhoto("lace", "Lace closures and frontals laid out in rows at the factory, one lifted by hand", "Frontal / closure trên đầu mannequin ở phòng làm closure"), file: "products/lace-2.jpg" },
   },
 ];
 
