@@ -72,22 +72,19 @@ export function HeroGallery({ shots, video }: HeroGalleryProps) {
               Inside our factory
             </p>
 
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-              <button
-                type="button"
-                onClick={() => video.src && setPlaying(true)}
-                disabled={!video.src}
-                aria-label="Play factory video"
-                className="group flex size-20 items-center justify-center rounded-full bg-white text-pink shadow-[0_0_0_10px_rgb(255_255_255/0.15)] transition-transform hover:scale-105 disabled:cursor-default disabled:hover:scale-100"
-              >
-                <Play className="ml-1 size-8 fill-current" />
-              </button>
-              {!video.src && (
-                <span className="rounded-full bg-ink/70 px-3 py-1 font-mono text-[0.65rem] text-white/80 backdrop-blur">
-                  Video chờ · {video.file}
-                </span>
-              )}
-            </div>
+            {/* The play button only shows once the video file is in public/sites/sancy. */}
+            {video.src && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <button
+                  type="button"
+                  onClick={() => setPlaying(true)}
+                  aria-label="Play factory video"
+                  className="group flex size-20 items-center justify-center rounded-full bg-white text-pink shadow-[0_0_0_10px_rgb(255_255_255/0.15)] transition-transform hover:scale-105"
+                >
+                  <Play className="ml-1 size-8 fill-current" />
+                </button>
+              </div>
+            )}
           </>
         )}
       </div>
