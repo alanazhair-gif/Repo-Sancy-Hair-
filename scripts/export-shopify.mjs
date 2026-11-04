@@ -5,7 +5,7 @@
 // Output (shopify/):
 //   sections/sancy-home.liquid    everything inside <main>, for templates/index.json
 //   sections/sancy-footer.liquid  the site footer, for sections/footer-group.json
-//   sections/sancy-header.liquid  the menu from /shopify-header, for sections/header-group.json
+//   sections/sancy-header.liquid  the site header, for sections/header-group.json
 //   assets/                       sancy-home.js and the images both sections use
 // Each section renders inside a declarative shadow root (see renderSection), and rem values
 // are converted to px because Shopify themes often change the root font size.
@@ -16,13 +16,10 @@ import postcss from "postcss";
 const root = process.cwd();
 const out = path.join(root, "shopify");
 const htmlFile = path.join(root, ".next/server/app/index.html");
-const headerFile = path.join(root, ".next/server/app/shopify-header.html");
 const cssDir = path.join(root, ".next/static/chunks");
 const SCOPE = ".sancy-home";
 
-if (!existsSync(htmlFile) || !existsSync(headerFile)) {
-  throw new Error("Run `npm run build` first: the prerendered pages in .next/server/app are missing.");
-}
+if (!existsSync(htmlFile)) throw new Error("Run `npm run build` first: .next/server/app/index.html is missing.");
 
 rmSync(out, { recursive: true, force: true });
 mkdirSync(path.join(out, "sections"), { recursive: true });
@@ -56,14 +53,21 @@ const toLiquid = (fragment) => {
 
 const main = html.match(/<main[^>]*>([\s\S]*?)<\/main>/)?.[1];
 const footer = html.match(/<footer[\s\S]*?<\/footer>/)?.[0];
-const header = readFileSync(headerFile, "utf8").match(/<header[\s\S]*?<\/header>/)?.[0];
-if (!main || !footer || !header) throw new Error("No <main>, <footer> or <header> found in the prerendered pages.");
+const header = html.match(/<header[\s\S]*?<\/header>/)?.[0];
+if (!main || !footer || !header) throw new Error("No <main>, <footer> or <header> found in the prerendered page.");
+
+// The header swaps logos on scroll; both files come from its data-logo-* attributes.
+const logoAttr = (markup) =>
+  markup.replace(/\s(data-logo-(?:light|dark))="(\/sites\/sancy\/[^"]+)"/g, (_, attr, publicPath) => {
+    const name = assetName(publicPath);
+    images.set(name, path.join(root, "public", publicPath));
+    return ` ${attr}="{{ '${name}' | asset_url }}"`;
+  });
 
 const homeMarkup = toLiquid(main);
-// The footer shows on every page, so its in-page links go back to the homepage.
+// The header and footer show on every page, so their in-page links go back to the homepage.
 const footerMarkup = toLiquid(footer).replace(/href="#/g, 'href="/#');
-// The standalone header already links to /#section.
-const headerMarkup = toLiquid(header);
+const headerMarkup = logoAttr(toLiquid(header)).replace(/href="#/g, 'href="/#');
 
 for (const [name, file] of images) copyFileSync(file, path.join(out, "assets", name));
 copyFileSync(path.join(root, "scripts/shopify/sancy-home.js"), path.join(out, "assets", "sancy-home.js"));
@@ -141,8 +145,6 @@ ${SCOPE} :is(h1, h2, h3, h4, h5, h6, p, li, dt, dd, label, legend, summary, smal
   letter-spacing: inherit;
   text-transform: inherit;
 }
-/* The theme's header sits above the section, so the hero no longer needs room for an overlaid header. */
-${SCOPE} #top > .grid { padding-top: 64px; }
 `;
 const styles = `${extra}\n${scoped}`;
 if (/{{|{%/.test(styles)) throw new Error("CSS contains Liquid delimiters.");

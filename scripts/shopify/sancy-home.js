@@ -136,20 +136,51 @@
     });
   }
 
-  // Mobile menu of the header section (site-header.tsx, standalone).
-  function initMenu(root) {
-    const toggle = root.querySelector("[data-menu-toggle]");
-    const menu = root.querySelector("[data-menu]");
-    if (!toggle || !menu) return;
-    const set = (open) => {
-      menu.hidden = !open;
-      toggle.setAttribute("aria-expanded", String(open));
-      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-      root.querySelector('[data-menu-icon="close"]')?.classList.toggle("hidden", !open);
-      root.querySelector('[data-menu-icon="open"]')?.classList.toggle("hidden", open);
+  // The header section (site-header.tsx). On the homepage it floats over the dark hero and turns
+  // solid once the page scrolls or the menu opens. Elsewhere there is no hero to float over, so
+  // it stays solid and takes its own space.
+  function initHeader(root) {
+    const header = root.querySelector("[data-header]");
+    if (!header) return;
+    const info = header.querySelector("[data-header-info]");
+    const logoLink = header.querySelector("[data-logo-light]");
+    const logo = logoLink?.querySelector("img");
+    const links = [...header.querySelectorAll("[data-header-link]")];
+    const button = header.querySelector("[data-menu-toggle]");
+    const menu = header.querySelector("[data-menu]");
+    const overHero = Boolean(findTarget("#top"));
+    const styles = {
+      header: { on: ["bg-paper/90", "text-ink", "shadow-[0_1px_0_var(--border)]", "backdrop-blur-md"], off: ["text-white"] },
+      info: { on: ["max-h-0"], off: ["max-h-10"] },
+      link: { on: ["hover:bg-blush", "hover:text-pink"], off: ["text-white/85", "hover:bg-white/10", "hover:text-white"] },
     };
-    toggle.addEventListener("click", () => set(menu.hidden));
-    menu.addEventListener("click", (event) => event.target.closest("a") && set(false));
+
+    if (!overHero) {
+      header.classList.remove("fixed", "inset-x-0", "top-0");
+      header.classList.add("relative");
+    }
+
+    const render = () => {
+      const solid = !overHero || window.scrollY > 24 || !menu.hidden;
+      toggle(header, solid, styles.header);
+      // Off the homepage the header sits in the page, so keep the info bar open.
+      if (info) toggle(info, solid && overHero, styles.info);
+      links.forEach((link) => toggle(link, solid, styles.link));
+      if (logo) logo.src = solid ? logoLink.dataset.logoLight : logoLink.dataset.logoDark;
+    };
+
+    button?.addEventListener("click", () => {
+      const open = menu.hidden;
+      menu.hidden = !open;
+      button.setAttribute("aria-expanded", String(open));
+      button.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      button.querySelector('[data-menu-icon="close"]')?.classList.toggle("hidden", !open);
+      button.querySelector('[data-menu-icon="open"]')?.classList.toggle("hidden", open);
+      render();
+    });
+    menu?.addEventListener("click", (event) => event.target.closest("a") && button.click());
+    window.addEventListener("scroll", render, { passive: true });
+    render();
   }
 
   // The section ships as a declarative shadow root. The theme editor re-inserts sections
@@ -164,17 +195,21 @@
     return shadow;
   };
 
-  const init = () =>
-    document.querySelectorAll("[data-sancy-host]").forEach((host) => {
-      const root = shadowOf(host)?.querySelector("[data-sancy-home]");
+  const init = () => {
+    const hosts = [...document.querySelectorAll("[data-sancy-host]")];
+    // Attach every root first: the header looks for the homepage hero in the others.
+    hosts.forEach(shadowOf);
+    hosts.forEach((host) => {
+      const root = host.shadowRoot?.querySelector("[data-sancy-home]");
       if (!root || root.dataset.ready) return;
       root.dataset.ready = "true";
       root.querySelectorAll("[data-calc]").forEach(initCalculator);
       root.querySelectorAll("[data-gallery]").forEach(initGallery);
       root.querySelectorAll(".reveal").forEach(initReveal);
       initAnchors(root);
-      initMenu(root);
+      initHeader(root);
     });
+  };
 
   // /#prices from the footer or another page: the target sits in a shadow root, which the
   // browser's own hash scrolling cannot see.

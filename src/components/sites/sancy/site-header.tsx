@@ -9,9 +9,8 @@ import { Logo } from "./logo";
 
 type LogoSources = { onLight: string | null; onDark: string | null };
 
-// standalone: the Shopify copy (see app/shopify-header). It sits above the page instead of over
-// the hero, stays solid, and its links go back to the homepage.
-export function SiteHeader({ logo, standalone = false }: { logo: LogoSources; standalone?: boolean }) {
+// data-header* hooks let scripts/shopify/sancy-home.js repeat the scroll effect without React.
+export function SiteHeader({ logo }: { logo: LogoSources }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -22,22 +21,22 @@ export function SiteHeader({ logo, standalone = false }: { logo: LogoSources; st
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const solid = standalone || scrolled || open;
-  const home = standalone ? "/" : "";
+  const solid = scrolled || open;
 
   return (
     <header
+      data-header
       className={cn(
-        standalone ? "relative z-50" : "fixed inset-x-0 top-0 z-50",
-        "transition-colors duration-500",
+        "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
         solid ? "bg-paper/90 text-ink shadow-[0_1px_0_var(--border)] backdrop-blur-md" : "text-white",
       )}
     >
       {/* Info bar: collapses once the page scrolls */}
       <div
+        data-header-info
         className={cn(
           "hidden overflow-hidden bg-pink text-white transition-[max-height] duration-500 md:block",
-          solid && !standalone ? "max-h-0" : "max-h-10",
+          solid ? "max-h-0" : "max-h-10",
         )}
       >
         <div className="mx-auto flex h-10 max-w-7xl items-center justify-between gap-6 px-4 text-xs font-medium sm:px-6 lg:px-8">
@@ -72,7 +71,12 @@ export function SiteHeader({ logo, standalone = false }: { logo: LogoSources; st
       </div>
 
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href={standalone ? "/" : "#top"} aria-label={`${siteConfig.name} home`}>
+        <a
+          href="#top"
+          aria-label={`${siteConfig.name} home`}
+          data-logo-light={logo.onLight ?? undefined}
+          data-logo-dark={logo.onDark ?? undefined}
+        >
           <Logo src={solid ? logo.onLight : logo.onDark} className="h-14" />
         </a>
 
@@ -80,7 +84,8 @@ export function SiteHeader({ logo, standalone = false }: { logo: LogoSources; st
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={home + link.href}
+              href={link.href}
+              data-header-link
               className={cn(
                 "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
                 solid ? "hover:bg-blush hover:text-pink" : "text-white/85 hover:bg-white/10 hover:text-white",
@@ -121,7 +126,7 @@ export function SiteHeader({ logo, standalone = false }: { logo: LogoSources; st
         {navLinks.map((link) => (
           <a
             key={link.href}
-            href={home + link.href}
+            href={link.href}
             onClick={() => setOpen(false)}
             className="block border-b border-border py-4 text-xl font-semibold"
           >
