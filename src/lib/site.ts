@@ -291,10 +291,10 @@ export const photos = {
     size: "1200×900",
   },
   colorChart: {
-    file: "colors/color-collection.jpg",
+    file: "colors/color-chart.jpg",
     alt: "Sancy color chart with all 27 color codes",
     brief: "Ảnh bảng màu 27 màu (San pham/Color Collections), không có #1B",
-    size: "2112×1188",
+    size: "1112×1164",
     fit: "contain",
   },
   factorySign: {

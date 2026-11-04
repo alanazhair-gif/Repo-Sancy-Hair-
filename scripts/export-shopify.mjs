@@ -5,6 +5,7 @@
 // Output (shopify/):
 //   sections/sancy-home.liquid    everything inside <main>, for templates/index.json
 //   sections/sancy-footer.liquid  the site footer, for sections/footer-group.json
+//   sections/sancy-header.liquid  the menu from /shopify-header, for sections/header-group.json
 //   assets/                       sancy-home.js and the images both sections use
 // Each section renders inside a declarative shadow root (see renderSection), and rem values
 // are converted to px because Shopify themes often change the root font size.
@@ -15,10 +16,13 @@ import postcss from "postcss";
 const root = process.cwd();
 const out = path.join(root, "shopify");
 const htmlFile = path.join(root, ".next/server/app/index.html");
+const headerFile = path.join(root, ".next/server/app/shopify-header.html");
 const cssDir = path.join(root, ".next/static/chunks");
 const SCOPE = ".sancy-home";
 
-if (!existsSync(htmlFile)) throw new Error("Run `npm run build` first: .next/server/app/index.html is missing.");
+if (!existsSync(htmlFile) || !existsSync(headerFile)) {
+  throw new Error("Run `npm run build` first: the prerendered pages in .next/server/app are missing.");
+}
 
 rmSync(out, { recursive: true, force: true });
 mkdirSync(path.join(out, "sections"), { recursive: true });
@@ -52,11 +56,14 @@ const toLiquid = (fragment) => {
 
 const main = html.match(/<main[^>]*>([\s\S]*?)<\/main>/)?.[1];
 const footer = html.match(/<footer[\s\S]*?<\/footer>/)?.[0];
-if (!main || !footer) throw new Error("No <main> or <footer> found in the prerendered page.");
+const header = readFileSync(headerFile, "utf8").match(/<header[\s\S]*?<\/header>/)?.[0];
+if (!main || !footer || !header) throw new Error("No <main>, <footer> or <header> found in the prerendered pages.");
 
 const homeMarkup = toLiquid(main);
 // The footer shows on every page, so its in-page links go back to the homepage.
 const footerMarkup = toLiquid(footer).replace(/href="#/g, 'href="/#');
+// The standalone header already links to /#section.
+const headerMarkup = toLiquid(header);
 
 for (const [name, file] of images) copyFileSync(file, path.join(out, "assets", name));
 copyFileSync(path.join(root, "scripts/shopify/sancy-home.js"), path.join(out, "assets", "sancy-home.js"));
@@ -174,6 +181,10 @@ const sections = {
   "sancy-home": {
     markup: homeMarkup,
     schema: { name: "Sancy homepage", tag: "section", class: "sancy-home-section", presets: [{ name: "Sancy homepage" }] },
+  },
+  "sancy-header": {
+    markup: headerMarkup,
+    schema: { name: "Sancy header", tag: "section", class: "sancy-header-section", enabled_on: { groups: ["header"] } },
   },
   "sancy-footer": {
     markup: footerMarkup,

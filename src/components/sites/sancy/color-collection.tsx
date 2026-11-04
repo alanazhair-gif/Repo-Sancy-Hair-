@@ -10,8 +10,9 @@ const fromColors = Math.min(...pricedProducts.map((p) => p.fromColors));
 
 function PriceLine({ price, label, tone = "light" }: { price: number; label: string; tone?: "light" | "dark" }) {
   return (
-    <p className={cn("mt-4 border-t pt-4 text-sm", tone === "dark" ? "border-white/15 text-white/70" : "border-border text-muted-foreground")}>
-      From <span className={cn("text-lg font-extrabold", tone === "dark" ? "text-white" : "text-ink")}>{formatUsd(price)}</span> / kg, {label}, 50cm
+    <p className={cn("text-xs", tone === "dark" ? "text-white/65" : "text-muted-foreground")}>
+      From <span className={cn("text-base font-extrabold", tone === "dark" ? "text-white" : "text-ink")}>{formatUsd(price)}</span> / kg,{" "}
+      {label}, Super Quality, 50cm
     </p>
   );
 }
@@ -29,62 +30,64 @@ export function ColorCollection() {
           link={{ label: "Ask about a color on WhatsApp", message: "COLOR" }}
         />
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-[0.9fr_2.1fr]">
+        <div className="mt-10 grid gap-4 lg:grid-cols-[0.8fr_1fr]">
           <Reveal>
-            <div className="flex h-full flex-col rounded-3xl p-5 text-white sm:p-6" style={{ background: jetBlack.swatch }}>
-              <PhotoSlot
-                photo={photos.jetBlack}
-                sizes="(min-width: 1024px) 28vw, 90vw"
-                tone="dark"
-                className="aspect-[4/3] rounded-2xl lg:aspect-auto lg:min-h-44 lg:flex-1"
-              />
-              <div className="mt-5 flex items-end justify-between gap-4">
-                <div>
-                  <p className="text-5xl leading-none font-extrabold">{jetBlack.code}</p>
-                  <p className="mt-1 font-accent text-2xl italic">{jetBlack.name}</p>
-                </div>
-                <span className="mb-1 rounded-full bg-pink px-3 py-1 text-xs font-bold uppercase tracking-[0.15em]">
-                  Own price
-                </span>
-              </div>
-              <PriceLine price={fromJetBlack} label="#1 Jet Black, Super Quality" tone="dark" />
-            </div>
+            <PhotoSlot
+              photo={photos.colorChart}
+              sizes="(min-width: 1024px) 34rem, 95vw"
+              // The chart's own background, so the frame can stretch to the cards' height.
+              className="aspect-square rounded-3xl border border-border bg-[#fbf7f8] lg:aspect-auto lg:h-full lg:min-h-80"
+            />
           </Reveal>
 
           <Reveal delay={100}>
-            <div className="flex h-full flex-col rounded-3xl border border-border bg-white p-5 sm:p-7">
-              <div className="flex items-center justify-between">
-                <p className="font-bold">Colors</p>
-                <span className="rounded-full bg-blush px-3 py-1 text-xs font-bold text-pink-deep">26 codes, one price</span>
+            <div className="flex h-full flex-col gap-3">
+              <div className="flex items-center gap-4 rounded-3xl p-4 text-white sm:p-5" style={{ background: jetBlack.swatch }}>
+                <PhotoSlot
+                  photo={photos.jetBlack}
+                  sizes="96px"
+                  tone="dark"
+                  compact
+                  className="size-16 shrink-0 rounded-2xl"
+                />
+                <div className="min-w-0 flex-1">
+                  <p className="flex items-baseline gap-2">
+                    <span className="text-2xl font-extrabold">{jetBlack.code}</span>
+                    <span className="font-accent text-lg italic">{jetBlack.name}</span>
+                  </p>
+                  <PriceLine price={fromJetBlack} label="#1 Jet Black" tone="dark" />
+                </div>
+                <span className="hidden rounded-full bg-pink px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.15em] sm:block">
+                  Own price
+                </span>
               </div>
-              <ul className="mt-5 grid grid-cols-4 gap-x-3 gap-y-4 sm:grid-cols-7 lg:grid-cols-9">
-                {colorCodes.map((c) => (
-                  <li key={c.code} className="text-center">
-                    <span
-                      className="mx-auto block aspect-square w-full max-w-14 rounded-full ring-1 ring-ink/10"
-                      style={{ background: c.swatch }}
-                    />
-                    <span className="mt-1.5 block text-xs font-semibold">{c.code}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-auto pt-6">
-                <PriceLine price={fromColors} label="any of the 26 colors, Super Quality" />
-                <p className="mt-3 text-xs text-muted-foreground">
-                  Screen colors are approximate. Ask on WhatsApp for a real video of the color you want.
-                </p>
+
+              <div className="flex flex-1 flex-col rounded-3xl border border-border bg-white p-4 sm:p-5">
+                <div className="flex items-center justify-between gap-3">
+                  <p className="font-bold">26 colors</p>
+                  <span className="rounded-full bg-blush px-3 py-1 text-xs font-bold text-pink-deep">One price</span>
+                </div>
+                <ul className="mt-4 grid grid-cols-7 gap-x-2 gap-y-3 sm:grid-cols-9">
+                  {colorCodes.map((c) => (
+                    <li key={c.code} className="text-center">
+                      <span
+                        className="mx-auto block aspect-square w-full max-w-10 rounded-full ring-1 ring-ink/10"
+                        style={{ background: c.swatch }}
+                      />
+                      <span className="mt-1 block text-[0.65rem] font-semibold">{c.code}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-auto pt-4">
+                  <PriceLine price={fromColors} label="any of the 26 colors" />
+                  <p className="mt-2 text-xs text-muted-foreground">
+                    Screen colors are approximate. Ask on WhatsApp for a real video of the color you want.
+                  </p>
+                </div>
               </div>
             </div>
           </Reveal>
         </div>
-
-        <Reveal delay={150}>
-          <PhotoSlot
-            photo={photos.colorChart}
-            sizes="(min-width: 1280px) 80rem, 95vw"
-            className="mt-4 aspect-[16/9] rounded-3xl border border-border"
-          />
-        </Reveal>
       </div>
     </section>
   );

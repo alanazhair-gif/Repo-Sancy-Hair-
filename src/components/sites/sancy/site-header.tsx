@@ -9,7 +9,9 @@ import { Logo } from "./logo";
 
 type LogoSources = { onLight: string | null; onDark: string | null };
 
-export function SiteHeader({ logo }: { logo: LogoSources }) {
+// standalone: the Shopify copy (see app/shopify-header). It sits above the page instead of over
+// the hero, stays solid, and its links go back to the homepage.
+export function SiteHeader({ logo, standalone = false }: { logo: LogoSources; standalone?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -20,12 +22,14 @@ export function SiteHeader({ logo }: { logo: LogoSources }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const solid = scrolled || open;
+  const solid = standalone || scrolled || open;
+  const home = standalone ? "/" : "";
 
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
+        standalone ? "relative z-50" : "fixed inset-x-0 top-0 z-50",
+        "transition-colors duration-500",
         solid ? "bg-paper/90 text-ink shadow-[0_1px_0_var(--border)] backdrop-blur-md" : "text-white",
       )}
     >
@@ -33,7 +37,7 @@ export function SiteHeader({ logo }: { logo: LogoSources }) {
       <div
         className={cn(
           "hidden overflow-hidden bg-pink text-white transition-[max-height] duration-500 md:block",
-          solid ? "max-h-0" : "max-h-10",
+          solid && !standalone ? "max-h-0" : "max-h-10",
         )}
       >
         <div className="mx-auto flex h-10 max-w-7xl items-center justify-between gap-6 px-4 text-xs font-medium sm:px-6 lg:px-8">
@@ -68,7 +72,7 @@ export function SiteHeader({ logo }: { logo: LogoSources }) {
       </div>
 
       <div className="mx-auto flex h-18 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#top" aria-label={`${siteConfig.name} home`}>
+        <a href={standalone ? "/" : "#top"} aria-label={`${siteConfig.name} home`}>
           <Logo src={solid ? logo.onLight : logo.onDark} className="h-14" />
         </a>
 
@@ -76,7 +80,7 @@ export function SiteHeader({ logo }: { logo: LogoSources }) {
           {navLinks.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={home + link.href}
               className={cn(
                 "rounded-full px-4 py-2 text-sm font-semibold transition-colors",
                 solid ? "hover:bg-blush hover:text-pink" : "text-white/85 hover:bg-white/10 hover:text-white",
@@ -100,42 +104,43 @@ export function SiteHeader({ logo }: { logo: LogoSources }) {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
+            data-menu-toggle
             className="inline-flex size-10 items-center justify-center rounded-full lg:hidden"
             aria-expanded={open}
             aria-controls="mobile-nav"
             aria-label={open ? "Close menu" : "Open menu"}
           >
-            {open ? <X className="size-5" /> : <Menu className="size-5" />}
+            <X data-menu-icon="close" className={cn("size-5", !open && "hidden")} />
+            <Menu data-menu-icon="open" className={cn("size-5", open && "hidden")} />
           </button>
         </div>
       </div>
 
-      {open && (
-        <nav id="mobile-nav" className="border-t border-border px-4 pb-6 lg:hidden" aria-label="Mobile">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="block border-b border-border py-4 text-xl font-semibold"
-            >
-              {link.label}
-            </a>
-          ))}
+      {/* Always rendered so the Shopify script can open it without React. */}
+      <nav id="mobile-nav" data-menu hidden={!open} className="border-t border-border px-4 pb-6 lg:hidden" aria-label="Mobile">
+        {navLinks.map((link) => (
           <a
-            href={whatsappHref()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-6 flex items-center justify-center gap-2 rounded-full bg-pink py-3 text-sm font-semibold text-white"
+            key={link.href}
+            href={home + link.href}
+            onClick={() => setOpen(false)}
+            className="block border-b border-border py-4 text-xl font-semibold"
           >
-            <WhatsAppIcon className="size-4" />
-            Send &quot;PRICE&quot; on WhatsApp
+            {link.label}
           </a>
-          <p className="mt-4 text-center text-xs text-muted-foreground">
-            {whatsappNumbers.map((n) => n.display).join(" · ")}
-          </p>
-        </nav>
-      )}
+        ))}
+        <a
+          href={whatsappHref()}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-6 flex items-center justify-center gap-2 rounded-full bg-pink py-3 text-sm font-semibold text-white"
+        >
+          <WhatsAppIcon className="size-4" />
+          Send &quot;PRICE&quot; on WhatsApp
+        </a>
+        <p className="mt-4 text-center text-xs text-muted-foreground">
+          {whatsappNumbers.map((n) => n.display).join(" · ")}
+        </p>
+      </nav>
     </header>
   );
 }

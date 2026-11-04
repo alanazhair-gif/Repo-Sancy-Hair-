@@ -136,6 +136,22 @@
     });
   }
 
+  // Mobile menu of the header section (site-header.tsx, standalone).
+  function initMenu(root) {
+    const toggle = root.querySelector("[data-menu-toggle]");
+    const menu = root.querySelector("[data-menu]");
+    if (!toggle || !menu) return;
+    const set = (open) => {
+      menu.hidden = !open;
+      toggle.setAttribute("aria-expanded", String(open));
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+      root.querySelector('[data-menu-icon="close"]')?.classList.toggle("hidden", !open);
+      root.querySelector('[data-menu-icon="open"]')?.classList.toggle("hidden", open);
+    };
+    toggle.addEventListener("click", () => set(menu.hidden));
+    menu.addEventListener("click", (event) => event.target.closest("a") && set(false));
+  }
+
   // The section ships as a declarative shadow root. The theme editor re-inserts sections
   // with innerHTML, which leaves the <template> inert, so attach it here when needed.
   const shadowOf = (host) => {
@@ -157,17 +173,32 @@
       root.querySelectorAll("[data-gallery]").forEach(initGallery);
       root.querySelectorAll(".reveal").forEach(initReveal);
       initAnchors(root);
+      initMenu(root);
     });
 
   // /#prices from the footer or another page: the target sits in a shadow root, which the
   // browser's own hash scrolling cannot see.
-  const scrollToHash = () => {
-    if (location.hash.length < 2) return;
+  const findTarget = (hash) => {
+    if (hash.length < 2) return null;
+    const id = decodeURIComponent(hash.slice(1));
     for (const host of document.querySelectorAll("[data-sancy-host]")) {
-      const target = host.shadowRoot?.getElementById(decodeURIComponent(location.hash.slice(1)));
-      if (target) return target.scrollIntoView({ behavior: "smooth", block: "start" });
+      const target = host.shadowRoot?.getElementById(id);
+      if (target) return target;
     }
+    return null;
   };
+  const scrollToHash = () => findTarget(location.hash)?.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  // Header and footer links to /#prices while already on the homepage: the hash may not
+  // change, so no hashchange fires. Scroll by hand.
+  document.addEventListener("click", (event) => {
+    const link = event.composedPath().find((el) => el.tagName === "A" && el.hash && el.pathname === location.pathname);
+    const target = link && findTarget(link.hash);
+    if (!target) return;
+    event.preventDefault();
+    history.replaceState(null, "", link.hash);
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 
   init();
   scrollToHash();
