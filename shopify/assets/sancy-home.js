@@ -148,7 +148,8 @@
     const links = [...header.querySelectorAll("[data-header-link]")];
     const button = header.querySelector("[data-menu-toggle]");
     const menu = header.querySelector("[data-menu]");
-    const overHero = Boolean(findTarget("#top"));
+    const hero = findTarget("#top");
+    const overHero = Boolean(hero);
     const styles = {
       header: { on: ["bg-paper/90", "text-ink", "shadow-[0_1px_0_var(--border)]", "backdrop-blur-md"], off: ["text-white"] },
       info: { on: ["max-h-0"], off: ["max-h-10"] },
@@ -161,7 +162,9 @@
     }
 
     const render = () => {
-      const solid = !overHero || window.scrollY > 24 || !menu.hidden;
+      // Read the hero's position rather than window.scrollY: it is right whichever element
+      // scrolls, and after the browser restores a scroll position on reload.
+      const solid = !overHero || hero.getBoundingClientRect().top < -24 || !menu.hidden;
       toggle(header, solid, styles.header);
       // Off the homepage the header sits in the page, so keep the info bar open.
       if (info) toggle(info, solid && overHero, styles.info);
@@ -179,7 +182,14 @@
       render();
     });
     menu?.addEventListener("click", (event) => event.target.closest("a") && button.click());
-    window.addEventListener("scroll", render, { passive: true });
+    // Capture catches scrolling on any element, not only the window.
+    document.addEventListener("scroll", render, { capture: true, passive: true });
+    ["resize", "load", "pageshow"].forEach((type) => window.addEventListener(type, render));
+    // Also fires when the hero moves without a scroll event reaching us.
+    if (hero) {
+      const steps = Array.from({ length: 21 }, (_, i) => i / 20);
+      new IntersectionObserver(render, { threshold: steps }).observe(hero);
+    }
     render();
   }
 

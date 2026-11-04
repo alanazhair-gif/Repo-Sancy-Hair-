@@ -11,14 +11,27 @@ type LogoSources = { onLight: string | null; onDark: string | null };
 
 // data-header* hooks let scripts/shopify/sancy-home.js repeat the scroll effect without React.
 export function SiteHeader({ logo }: { logo: LogoSources }) {
-  const [scrolled, setScrolled] = useState(false);
+  // Start solid: the server render (and the Shopify copy, until its script runs) cannot know the
+  // scroll position, and a solid header stays readable over the hero too.
+  const [scrolled, setScrolled] = useState(true);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    // Read the hero's position rather than window.scrollY, and listen in the capture phase,
+    // so a restored scroll position or another scrolling element still turns the header solid.
+    const onScroll = () => {
+      const top = document.getElementById("top")?.getBoundingClientRect().top ?? -window.scrollY;
+      setScrolled(top < -24);
+    };
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    document.addEventListener("scroll", onScroll, { capture: true, passive: true });
+    window.addEventListener("pageshow", onScroll);
+    window.addEventListener("resize", onScroll);
+    return () => {
+      document.removeEventListener("scroll", onScroll, { capture: true });
+      window.removeEventListener("pageshow", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   const solid = scrolled || open;
