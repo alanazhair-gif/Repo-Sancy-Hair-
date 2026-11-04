@@ -62,7 +62,7 @@ export function HeroGallery({ shots, video }: HeroGalleryProps) {
             ) : (
               <Placeholder shot={shot} large />
             )}
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/60 via-transparent to-ink/30" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/35 via-transparent to-ink/15" />
 
             <p className="absolute top-4 left-4 flex items-center gap-2 rounded-full bg-ink/60 px-3.5 py-1.5 text-xs font-semibold backdrop-blur">
               <span className="relative flex size-2">
@@ -104,7 +104,7 @@ export function HeroGallery({ shots, video }: HeroGalleryProps) {
                 aria-pressed={i === active}
                 className={cn(
                   "relative block aspect-[4/3] w-full overflow-hidden rounded-xl ring-2 transition",
-                  i === active ? "ring-pink" : "ring-transparent opacity-70 hover:opacity-100",
+                  i === active ? "ring-pink" : "ring-transparent opacity-85 hover:opacity-100",
                 )}
               >
                 {s.src ? (

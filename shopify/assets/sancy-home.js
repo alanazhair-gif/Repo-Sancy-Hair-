@@ -79,7 +79,7 @@
     const strip = gallery.querySelector("[data-gallery-strip]");
     const thumbs = [...gallery.querySelectorAll("[data-gallery-thumb]")];
     const mainImg = main.querySelector("img");
-    const ring = { on: ["ring-pink"], off: ["ring-transparent", "opacity-70", "hover:opacity-100"] };
+    const ring = { on: ["ring-pink"], off: ["ring-transparent", "opacity-85", "hover:opacity-100"] };
 
     thumbs.forEach((thumb) =>
       thumb.addEventListener("click", () => {
