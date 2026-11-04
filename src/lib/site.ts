@@ -106,7 +106,7 @@ export const products: Product[] = [
     summary: "Flat weft, sold in 100g bundles.",
     fromJetBlack: 540,
     fromColors: 690,
-    photo: productPhoto("flat-weft", "Close-up of a Flat Weft track", "Cận đường weft của Flat Weft"),
+    photo: productPhoto("flat-weft", "Close-up of a blonde Flat Weft track", "Cận đường weft của Flat Weft"),
   },
   {
     id: "keratin-tip",
@@ -280,9 +280,9 @@ export const photos = {
   },
   heroWeighing: {
     file: "prices/weighing.jpg",
-    alt: "1 kg of Sancy hair on a digital scale",
-    brief: "Cân 1 kg tóc trên cân điện tử, thấy rõ số 1.000 kg",
-    size: "900×900",
+    alt: "A Sancy weft bundle on a digital scale, reading 0.105 kg",
+    brief: "Cân bundle tóc trên cân điện tử, thấy rõ số cân",
+    size: "1200×900",
   },
   jetBlack: {
     file: "colors/jet-black-1.jpg",

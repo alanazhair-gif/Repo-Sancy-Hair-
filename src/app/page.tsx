@@ -24,7 +24,7 @@ export default function Home() {
             <PhotoSlot
               photo={photos.heroWeighing}
               sizes="(min-width: 1024px) 30vw, 90vw"
-              className="mt-7 aspect-[16/9] rounded-3xl"
+              className="mt-7 aspect-[4/3] rounded-3xl"
             />
           }
         />
