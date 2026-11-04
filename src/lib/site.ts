@@ -97,7 +97,7 @@ export const products: Product[] = [
     summary: "Genius weft, sold in 100g bundles.",
     fromJetBlack: 530,
     fromColors: 680,
-    photo: productPhoto("genius-weft", "Blonde Genius Weft bundles", "Cận đường weft của Genius Weft"),
+    photo: { ...productPhoto("genius-weft", "Close-up of blonde Genius Weft bundles showing the weft", "Cận đường weft của Genius Weft"), file: "products/genius-weft-1.jpg" },
   },
   {
     id: "flat-weft",
@@ -306,10 +306,10 @@ export const photos = {
 } satisfies Record<string, PhotoBrief>;
 
 export const factoryStepPhotos: PhotoBrief[] = [
-  { file: "factory/washing.jpg", alt: "Two Sancy workers washing hair in a basin at the factory", brief: "Gội tóc trong chậu ở xưởng", size: "900×900" },
-  { file: "factory/drying.jpg", alt: "A Sancy worker lifting washed hair onto the drying racks", brief: "Tóc phơi / sấy trên giá", size: "900×900" },
-  { file: "factory/straightening.jpg", alt: "Hair being straightened at the Sancy factory", brief: "Ép thẳng tóc bằng máy ép", size: "900×900" },
-  { file: "factory/checking.jpg", alt: "A Sancy staff member checking hair bundles at the workshop", brief: "Kiểm hàng tại xưởng", size: "900×900" },
+  { file: "factory/wash.jpg", alt: "Two Sancy workers washing hair in a basin at the factory", brief: "Gội tóc trong chậu ở xưởng", size: "900×900" },
+  { file: "factory/dry.jpg", alt: "A Sancy worker lifting washed hair onto the drying racks", brief: "Tóc phơi / sấy trên giá", size: "900×900" },
+  { file: "factory/straighten.jpg", alt: "Hair being straightened at the Sancy factory", brief: "Ép thẳng tóc bằng máy ép", size: "900×900" },
+  { file: "factory/check.jpg", alt: "A Sancy staff member checking hair bundles at the workshop", brief: "Kiểm hàng tại xưởng", size: "900×900" },
 ];
 
 export const orderPhotos: PhotoBrief[] = [1, 2, 3].map((n) => ({
