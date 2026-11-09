@@ -36,7 +36,7 @@ export function ColorCollection() {
               photo={photos.colorChart}
               sizes="(min-width: 1024px) 34rem, 95vw"
               // The chart's own background, so the frame can stretch to the cards' height.
-              className="aspect-[4/5] rounded-3xl border border-border bg-[#fbf6f8] sm:aspect-square lg:aspect-auto lg:h-full lg:min-h-80"
+              className="aspect-square rounded-3xl border border-border bg-[#fbf7f8] lg:aspect-auto lg:h-full lg:min-h-80"
             />
           </Reveal>
 

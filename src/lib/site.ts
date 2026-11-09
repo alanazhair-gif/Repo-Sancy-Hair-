@@ -154,7 +154,7 @@ export const pricedProducts = products.filter(
 export const formatUsd = (value: number, digits = 0) =>
   `$${value.toLocaleString("en-US", { minimumFractionDigits: digits, maximumFractionDigits: digits })}`;
 
-// Swatch values are sampled from colors/color-chart-22.jpg, in the same order.
+// Swatch values are sampled from colors/color-chart-22b.jpg, in the same order.
 export const jetBlack = { code: "#1", name: "Jet Black", swatch: "#141418" };
 
 export const colorCodes: { code: string; swatch: string }[] = [
@@ -286,10 +286,10 @@ export const photos = {
     size: "1200×900",
   },
   colorChart: {
-    file: "colors/color-chart-22.jpg",
+    file: "colors/color-chart-22b.jpg",
     alt: "Sancy color chart with all 22 color codes",
-    brief: "Ảnh bảng màu 22 màu, không có #1B",
-    size: "1080×1350",
+    brief: "Ảnh bảng màu 22 màu (San pham/Color Collections), không có #1B",
+    size: "1080×1094",
     fit: "contain",
   },
   factorySign: {
