@@ -9,7 +9,7 @@ const bulk = products[0];
 
 const facts = [
   { icon: PackageCheck, value: "100g", label: "Minimum order, 1 bundle" },
-  { icon: Palette, value: "27", label: "Colors in stock" },
+  { icon: Palette, value: "22", label: "Colors in stock" },
   { icon: Ruler, value: "50-70cm", label: "Lengths, 20\" to 28\"" },
   { icon: Award, value: "2 grades", label: "Super High Quality · Super Quality" },
 ];
