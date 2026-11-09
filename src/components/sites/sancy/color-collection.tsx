@@ -29,7 +29,7 @@ export function ColorCollection() {
           eyebrow="Colors"
           title="22 colors."
           accent="Two prices."
-          tags={["#1 Jet Black: own price", "21 colors: one price"]}
+          tags={["#1 Jet Black: own price", "All other colors: one price"]}
           note="Order by color code."
           link={{ label: "Ask about a color on WhatsApp", message: "COLOR" }}
         />
@@ -70,7 +70,7 @@ export function ColorCollection() {
                 <div className="flex items-center justify-between gap-3">
                   <p className="font-bold">{allColors.length} colors</p>
                   <span className="rounded-full bg-blush px-3 py-1 text-xs font-bold text-pink-deep">
-                    {colorCodes.length} at one price
+                    Two prices
                   </span>
                 </div>
                 {/* Rows of 8, 7 and 7, the same layout as the color chart. */}
@@ -80,10 +80,7 @@ export function ColorCollection() {
                       {row.map((c) => (
                         <li key={c.code} className="w-1/8 px-1 text-center">
                           <span
-                            className={cn(
-                              "mx-auto block aspect-square w-full max-w-10 rounded-full ring-1 ring-ink/10",
-                              c.code === jetBlack.code && "ring-2 ring-pink ring-offset-2",
-                            )}
+                            className="mx-auto block aspect-square w-full max-w-10 rounded-full ring-1 ring-ink/10"
                             style={{ background: c.swatch }}
                           />
                           <span className="mt-1 block text-[0.65rem] font-semibold">{c.code}</span>
