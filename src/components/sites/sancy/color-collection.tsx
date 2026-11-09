@@ -8,6 +8,10 @@ import { SectionHeader } from "./section-header";
 const fromJetBlack = Math.min(...pricedProducts.map((p) => p.fromJetBlack));
 const fromColors = Math.min(...pricedProducts.map((p) => p.fromColors));
 
+// All 22 codes, #1 first, split into rows of 8, 7 and 7 like the color chart.
+const allColors = [jetBlack, ...colorCodes];
+const swatchRows = [allColors.slice(0, 8), allColors.slice(8, 15), allColors.slice(15)];
+
 function PriceLine({ price, label, tone = "light" }: { price: number; label: string; tone?: "light" | "dark" }) {
   return (
     <p className={cn("text-xs", tone === "dark" ? "text-white/65" : "text-muted-foreground")}>
@@ -64,22 +68,32 @@ export function ColorCollection() {
 
               <div className="flex flex-1 flex-col rounded-3xl border border-border bg-white p-4 sm:p-5">
                 <div className="flex items-center justify-between gap-3">
-                  <p className="font-bold">21 colors</p>
-                  <span className="rounded-full bg-blush px-3 py-1 text-xs font-bold text-pink-deep">One price</span>
+                  <p className="font-bold">{allColors.length} colors</p>
+                  <span className="rounded-full bg-blush px-3 py-1 text-xs font-bold text-pink-deep">
+                    {colorCodes.length} at one price
+                  </span>
                 </div>
-                <ul className="mt-4 grid grid-cols-7 gap-x-2 gap-y-3">
-                  {colorCodes.map((c) => (
-                    <li key={c.code} className="text-center">
-                      <span
-                        className="mx-auto block aspect-square w-full max-w-10 rounded-full ring-1 ring-ink/10"
-                        style={{ background: c.swatch }}
-                      />
-                      <span className="mt-1 block text-[0.65rem] font-semibold">{c.code}</span>
-                    </li>
+                {/* Rows of 8, 7 and 7, the same layout as the color chart. */}
+                <div className="mt-4 flex flex-col gap-y-3">
+                  {swatchRows.map((row) => (
+                    <ul key={row[0].code} className="flex justify-center">
+                      {row.map((c) => (
+                        <li key={c.code} className="w-1/8 px-1 text-center">
+                          <span
+                            className={cn(
+                              "mx-auto block aspect-square w-full max-w-10 rounded-full ring-1 ring-ink/10",
+                              c.code === jetBlack.code && "ring-2 ring-pink ring-offset-2",
+                            )}
+                            style={{ background: c.swatch }}
+                          />
+                          <span className="mt-1 block text-[0.65rem] font-semibold">{c.code}</span>
+                        </li>
+                      ))}
+                    </ul>
                   ))}
-                </ul>
+                </div>
                 <div className="mt-auto pt-4">
-                  <PriceLine price={fromColors} label="any of the 21 colors" />
+                  <PriceLine price={fromColors} label={`any color except ${jetBlack.code}`} />
                   <p className="mt-2 text-xs text-muted-foreground">
                     Screen colors are approximate. Ask on WhatsApp for a real video of the color you want.
                   </p>
