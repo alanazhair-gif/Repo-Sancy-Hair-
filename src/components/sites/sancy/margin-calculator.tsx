@@ -33,7 +33,7 @@ export function MarginCalculator({ media }: { media?: React.ReactNode }) {
   return (
     <section
       id="prices"
-      className="scroll-mt-20 bg-blush py-16 sm:py-28"
+      className="scroll-mt-20 bg-blush py-16 max-sm:py-12 sm:py-28"
       data-calc
       data-calc-products={JSON.stringify(pricedProducts.map((p) => [p.id, p.name, p.fromJetBlack, p.fromColors]))}
     >

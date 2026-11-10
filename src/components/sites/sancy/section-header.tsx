@@ -16,11 +16,11 @@ export function SectionHeader({ eyebrow, title, accent, tags, note, link }: Sect
   return (
     <Reveal>
       <p className="text-xs font-bold uppercase tracking-[0.3em] text-pink">{eyebrow}</p>
-      <h2 className="mt-4 text-3xl leading-tight font-extrabold tracking-tight sm:text-5xl">
+      <h2 className="mt-4 text-3xl leading-tight font-extrabold tracking-tight max-sm:mt-3 sm:text-5xl">
         {title} <span className="font-accent font-medium whitespace-nowrap text-pink italic">{accent}</span>
       </h2>
 
-      <div className="mt-8 flex flex-col gap-4 border-y border-border py-4 md:flex-row md:items-center md:justify-between">
+      <div className="mt-8 flex flex-col gap-4 border-y border-border py-4 max-sm:mt-5 max-sm:gap-3 max-sm:py-3 md:flex-row md:items-center md:justify-between">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
           <ul className="flex flex-wrap gap-1.5">
             {tags.map((tag) => (

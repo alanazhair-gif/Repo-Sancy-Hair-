@@ -1,5 +1,6 @@
-import { instagramHref, navLinks, photos, products, siteConfig, whatsappHref, whatsappNumbers } from "@/lib/site";
+import { aboutLinks, instagramHref, navLinks, photos, products, siteConfig, whatsappHref, whatsappNumbers } from "@/lib/site";
 import { siteAsset } from "@/lib/assets";
+import { lineCollectionSlug } from "@/lib/collections";
 import { Minus, Plus } from "lucide-react";
 import { InstagramIcon, WhatsAppIcon } from "./icons";
 import { Logo } from "./logo";
@@ -11,8 +12,8 @@ const link = "transition-colors hover:text-pink";
 type FooterLink = { label: string; href: string };
 
 const footerNavs: { title: string; links: FooterLink[] }[] = [
-  { title: "Products", links: products.map((p) => ({ label: p.name, href: "#products" })) },
-  { title: "Company", links: navLinks.map((l) => ({ label: l.label, href: l.href })) },
+  { title: "Products", links: products.map((p) => ({ label: p.name, href: `/shop/${lineCollectionSlug(p.id)}` })) },
+  { title: "Company", links: [...aboutLinks, ...navLinks.filter((l) => l.href !== "/shop")] },
 ];
 
 function LinkList({ links, className }: { links: FooterLink[]; className: string }) {
@@ -92,7 +93,7 @@ export function SiteFooter() {
       </div>
 
       <div className="border-t border-white/10">
-        <p className="mx-auto max-w-7xl px-4 py-6 text-sm text-white/45 sm:px-6 lg:px-8">
+        <p className="mx-auto max-w-7xl px-4 py-6 text-center text-sm text-white/45 sm:px-6 lg:px-8">
           © {new Date().getFullYear()} {siteConfig.name}
         </p>
       </div>

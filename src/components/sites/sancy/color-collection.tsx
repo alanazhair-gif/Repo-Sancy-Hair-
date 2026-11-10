@@ -19,7 +19,7 @@ function PriceLine({ price, label, tone = "light" }: { price: number; label: str
 
 export function ColorCollection() {
   return (
-    <section id="colors" className="scroll-mt-20 bg-paper py-16 sm:py-28">
+    <section id="colors" className="scroll-mt-20 bg-paper py-16 max-sm:py-12 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Colors"

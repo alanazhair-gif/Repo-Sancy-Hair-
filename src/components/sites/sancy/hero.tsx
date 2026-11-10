@@ -158,7 +158,7 @@ export function Hero() {
       <div className="relative mx-auto max-w-7xl px-4 pb-8 sm:px-6 sm:pb-10 lg:px-8">
         <dl className="grid grid-cols-2 gap-3 lg:grid-cols-4">
           {facts.map(({ icon: Icon, value, label }) => (
-            <div key={label} className="flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-3.5 sm:flex-row sm:items-center sm:gap-4 sm:p-5">
+            <div key={label} className="flex flex-col gap-2.5 rounded-2xl border border-white/10 bg-white/[0.03] p-3.5 max-sm:flex-row max-sm:items-center max-sm:gap-2.5 max-sm:p-3 sm:flex-row sm:items-center sm:gap-4 sm:p-5">
               <span className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-pink/15 text-pink sm:size-11">
                 <Icon className="size-5" />
               </span>

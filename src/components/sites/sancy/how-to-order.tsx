@@ -3,11 +3,12 @@ import { orderPhotos, orderSteps, photos, siteConfig, trustChecks, whatsappHref,
 import { WhatsAppIcon } from "./icons";
 import { PhotoSlot } from "./photo-slot";
 import { Reveal } from "./reveal";
+import { SwipeHint } from "./swipe-hint";
 import { SectionHeader } from "./section-header";
 
 export function HowToOrder() {
   return (
-    <section id="order" className="scroll-mt-20 bg-paper py-16 sm:py-28">
+    <section id="order" className="scroll-mt-20 bg-paper py-16 max-sm:py-12 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="How to order"
@@ -18,12 +19,12 @@ export function HowToOrder() {
           link={{ label: "Send \"PRICE\" on WhatsApp", message: "PRICE" }}
         />
 
-        <ol className="mt-8 grid gap-3 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
+        <ol className="mt-8 grid gap-3 max-sm:mt-5 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
           {orderSteps.map((step, i) => (
             <li key={step.title}>
               <Reveal
                 delay={i * 80}
-                className="flex h-full items-start gap-4 rounded-2xl border border-border bg-white p-5 transition-all sm:flex-col sm:items-stretch sm:gap-0 sm:rounded-[1.75rem] sm:p-7 duration-300 hover:-translate-y-1 hover:border-pink/40 hover:shadow-[0_24px_48px_-24px_rgb(233_30_115/0.4)]"
+                className="flex h-full items-start gap-4 rounded-2xl border border-border bg-white p-5 max-sm:gap-3 max-sm:p-4 transition-all sm:flex-col sm:items-stretch sm:gap-0 sm:rounded-[1.75rem] sm:p-7 duration-300 hover:-translate-y-1 hover:border-pink/40 hover:shadow-[0_24px_48px_-24px_rgb(233_30_115/0.4)]"
               >
                 <span className="tabular w-11 shrink-0 text-3xl leading-none font-extrabold text-pink sm:w-auto sm:text-5xl">
                   {String(i + 1).padStart(2, "0")}
@@ -37,17 +38,17 @@ export function HowToOrder() {
           ))}
         </ol>
 
-        <div className="mt-12 grid gap-6 rounded-[1.75rem] bg-blush p-5 sm:mt-20 sm:gap-8 sm:rounded-[2rem] sm:p-10 lg:grid-cols-2 lg:gap-12">
+        <div className="mt-12 grid gap-6 rounded-[1.75rem] bg-blush p-5 max-sm:mt-8 max-sm:gap-5 max-sm:grid-cols-1 max-sm:[&>*]:min-w-0 sm:mt-20 sm:gap-8 sm:rounded-[2rem] sm:p-10 lg:grid-cols-2 lg:gap-12">
           <Reveal className="flex flex-col">
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-pink">Before you pay</p>
-            <h3 className="mt-4 text-2xl leading-tight font-extrabold text-balance sm:text-4xl">
+            <h3 className="mt-4 text-2xl leading-tight font-extrabold text-balance max-sm:mt-3 max-sm:text-xl sm:text-4xl">
               Worried about sending money to a supplier you found online?{" "}
               <span className="font-accent font-medium text-pink italic">Check us first.</span>
             </h3>
             <PhotoSlot
-              photo={photos.factorySign}
+              photo={photos.workshop}
               sizes="(min-width: 1024px) 40vw, 90vw"
-              className="mt-6 aspect-[16/9] rounded-2xl sm:mt-8 lg:mt-auto"
+              className="mt-6 aspect-[16/9] rounded-2xl max-sm:hidden sm:mt-8 lg:mt-auto"
             />
           </Reveal>
 
@@ -77,21 +78,21 @@ export function HowToOrder() {
               </p>
             </div>
 
-            <ul className="grid flex-1 gap-3 sm:grid-cols-2 sm:gap-4">
+            <ul className="grid flex-1 gap-3 max-sm:grid-cols-2 sm:grid-cols-2 sm:gap-4">
               {trustChecks.map((check) => (
-                <li key={check.title} className="rounded-2xl bg-white p-4 sm:p-5">
-                  <h4 className="flex items-start gap-2.5 font-bold">
+                <li key={check.title} className="rounded-2xl bg-white p-4 max-sm:p-3.5 sm:p-5">
+                  <h4 className="flex items-start gap-2.5 font-bold max-sm:gap-2 max-sm:text-sm max-sm:leading-snug">
                     <BadgeCheck className="mt-0.5 size-5 shrink-0 text-pink" />
                     {check.title}
                   </h4>
-                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{check.body}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted-foreground max-sm:hidden">{check.body}</p>
                 </li>
               ))}
             </ul>
           </Reveal>
         </div>
 
-        <Reveal className="mt-12 sm:mt-20">
+        <Reveal className="mt-12 max-sm:mt-8 sm:mt-20">
           <div className="flex flex-col gap-4 border-b border-border pb-5 md:flex-row md:items-end md:justify-between">
             <div>
               <p className="text-xs font-bold uppercase tracking-[0.3em] text-pink">Proof</p>
@@ -110,7 +111,8 @@ export function HowToOrder() {
             </a>
           </div>
 
-          <ul className="-mx-4 mt-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-4 pb-1 [scrollbar-width:none] sm:mx-0 sm:mt-8 sm:grid sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0">
+          <SwipeHint className="mt-4" />
+          <ul className="-mx-4 mt-2 flex snap-x snap-mandatory scroll-px-4 gap-3 overflow-x-auto px-4 pb-1 sm:scroll-px-0 [scrollbar-width:none] sm:mx-0 sm:mt-8 sm:grid sm:grid-cols-3 sm:gap-5 sm:overflow-visible sm:px-0 sm:pb-0">
             {orderPhotos.map((photo, i) => (
               <li key={photo.file} className="w-[80%] shrink-0 snap-start rounded-[1.75rem] border border-border bg-white p-2 sm:w-auto">
                 <PhotoSlot

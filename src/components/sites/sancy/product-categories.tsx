@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { formatUsd, products, whatsappHref } from "@/lib/site";
+import { lineCollectionSlug } from "@/lib/collections";
+import { formatUsd, products } from "@/lib/site";
 import { PhotoSlot } from "./photo-slot";
 import { Reveal } from "./reveal";
 import { SectionHeader } from "./section-header";
@@ -8,7 +10,7 @@ const priceTags = ["\"From\" prices", "USD per kg", "50cm", "Super Quality"];
 
 export function ProductCategories() {
   return (
-    <section id="products" className="scroll-mt-20 bg-paper py-16 sm:py-28">
+    <section id="products" className="scroll-mt-20 bg-paper py-16 max-sm:py-12 sm:py-28">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Products"
@@ -23,10 +25,9 @@ export function ProductCategories() {
           {products.map((product, i) => (
             <li key={product.id}>
               <Reveal delay={(i % 4) * 70} className="h-full">
-                <a
-                  href={whatsappHref(`PRICE ${product.name}`)}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href={`/shop/${lineCollectionSlug(product.id)}`}
+                  aria-label={`Shop ${product.name}`}
                   className="group flex h-full flex-col rounded-[1.25rem] border border-border bg-white p-1.5 transition-all sm:rounded-[1.75rem] sm:p-2 duration-300 hover:-translate-y-1 hover:border-pink/40 hover:shadow-[0_24px_48px_-24px_rgb(233_30_115/0.4)]"
                 >
                   <PhotoSlot
@@ -38,7 +39,7 @@ export function ProductCategories() {
 
                   <div className="flex flex-1 flex-col px-2 pt-3 pb-2.5 sm:px-4 sm:pt-5 sm:pb-4">
                     <h3 className="text-[0.95rem] leading-snug font-bold sm:text-lg sm:leading-normal">{product.name}</h3>
-                    <p className="mt-1 mb-3 line-clamp-3 text-xs leading-snug text-muted-foreground sm:mt-1.5 sm:mb-0 sm:line-clamp-none sm:min-h-[2lh] sm:text-sm sm:leading-relaxed">
+                    <p className="mt-1 mb-3 line-clamp-3 text-xs max-sm:hidden leading-snug text-muted-foreground sm:mt-1.5 sm:mb-0 sm:line-clamp-none sm:min-h-[2lh] sm:text-sm sm:leading-relaxed">
                       {product.summary}
                     </p>
 
@@ -78,7 +79,7 @@ export function ProductCategories() {
                       </span>
                     </div>
                   </div>
-                </a>
+                </Link>
               </Reveal>
             </li>
           ))}
