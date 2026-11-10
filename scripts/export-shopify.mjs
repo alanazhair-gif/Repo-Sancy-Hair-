@@ -16,7 +16,8 @@ import postcss from "postcss";
 const root = process.cwd();
 const out = path.join(root, "shopify");
 const htmlFile = path.join(root, ".next/server/app/index.html");
-const cssDir = path.join(root, ".next/static/chunks");
+// Turbopack writes CSS next to the JS chunks; webpack (`next build --webpack`) writes it to static/css.
+const cssDirs = [".next/static/chunks", ".next/static/css"].map((dir) => path.join(root, dir)).filter(existsSync);
 const SCOPE = ".sancy-home";
 
 if (!existsSync(htmlFile)) throw new Error("Run `npm run build` first: .next/server/app/index.html is missing.");
@@ -73,8 +74,13 @@ for (const [name, file] of images) copyFileSync(file, path.join(out, "assets", n
 copyFileSync(path.join(root, "scripts/shopify/sancy-home.js"), path.join(out, "assets", "sancy-home.js"));
 
 // 2. Styles: the compiled Tailwind CSS, scoped under .sancy-home.
-const cssFiles = readdirSync(cssDir).filter((f) => f.endsWith(".css"));
-const css = cssFiles.map((f) => readFileSync(path.join(cssDir, f), "utf8")).join("\n");
+const cssFiles = cssDirs.flatMap((dir) =>
+  readdirSync(dir)
+    .filter((f) => f.endsWith(".css"))
+    .map((f) => path.join(dir, f)),
+);
+if (cssFiles.length === 0) throw new Error("No compiled CSS found in .next/static; run the build first.");
+const css = cssFiles.map((f) => readFileSync(f, "utf8")).join("\n");
 
 const scopeSelector = (selector) =>
   selector

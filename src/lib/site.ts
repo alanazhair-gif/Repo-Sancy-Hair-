@@ -163,16 +163,11 @@ export const pricedProducts = products.filter(
 export const formatUsd = (value: number, digits = 0) =>
   `$${value.toLocaleString("en-US", { minimumFractionDigits: digits, maximumFractionDigits: digits })}`;
 
-// Swatch values are sampled from colors/color-collection.jpg, in the same order.
+// Swatch values are sampled from colors/color-chart-22b.jpg, in the same order.
 export const jetBlack = { code: "#1", name: "Jet Black", swatch: "#141418" };
 
 export const colorCodes: { code: string; swatch: string }[] = [
-  { code: "#2C", swatch: "#221e1f" },
-  { code: "#6C", swatch: "#2b1e1d" },
-  { code: "#3", swatch: "#45271e" },
-  { code: "#2ash", swatch: "#553423" },
   { code: "#4ash", swatch: "#724b33" },
-  { code: "#4", swatch: "#946744" },
   { code: "#7C", swatch: "#604737" },
   { code: "#10", swatch: "#8d6242" },
   { code: "#7", swatch: "#d8b177" },
@@ -413,10 +408,10 @@ export const photos = {
     size: "1200×900",
   },
   colorChart: {
-    file: "colors/color-chart.jpg",
-    alt: "Sancy color chart with all 27 color codes",
-    brief: "Ảnh bảng màu 27 màu (San pham/Color Collections), không có #1B",
-    size: "1112×1164",
+    file: "colors/color-chart-22b.jpg",
+    alt: "Sancy color chart with all 22 color codes",
+    brief: "Ảnh bảng màu 22 màu (San pham/Color Collections), không có #1B",
+    size: "1080×1094",
     fit: "contain",
   },
   factorySign: {

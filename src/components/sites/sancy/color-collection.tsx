@@ -23,9 +23,9 @@ export function ColorCollection() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           eyebrow="Colors"
-          title="27 colors."
+          title="22 colors."
           accent="Two prices."
-          tags={["#1 Jet Black: own price", "26 colors: one price"]}
+          tags={["#1 Jet Black: own price", "21 colors: one price"]}
           note="Order by color code."
           link={{ label: "Ask about a color on WhatsApp", message: "COLOR" }}
         />
@@ -64,10 +64,10 @@ export function ColorCollection() {
 
               <div className="flex flex-1 flex-col rounded-3xl border border-border bg-white p-4 sm:p-5">
                 <div className="flex items-center justify-between gap-3">
-                  <p className="font-bold">26 colors</p>
+                  <p className="font-bold">21 colors</p>
                   <span className="rounded-full bg-blush px-3 py-1 text-xs font-bold text-pink-deep">One price</span>
                 </div>
-                <ul className="mt-4 grid grid-cols-7 gap-x-2 gap-y-3 sm:grid-cols-9">
+                <ul className="mt-4 grid grid-cols-7 gap-x-2 gap-y-3">
                   {colorCodes.map((c) => (
                     <li key={c.code} className="text-center">
                       <span
@@ -79,7 +79,7 @@ export function ColorCollection() {
                   ))}
                 </ul>
                 <div className="mt-auto pt-4">
-                  <PriceLine price={fromColors} label="any of the 26 colors" />
+                  <PriceLine price={fromColors} label="any of the 21 colors" />
                   <p className="mt-2 text-xs text-muted-foreground">
                     Screen colors are approximate. Ask on WhatsApp for a real video of the color you want.
                   </p>

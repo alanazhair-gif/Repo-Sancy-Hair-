@@ -18,7 +18,7 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Sancy Hair Vietnam | Wholesale Vietnamese Human Hair, Bulk and Weft",
   description:
-    "Wholesale-grade Vietnamese human hair, bulk and weft, priced so resellers keep the margin. MOQ 100g, ready stock, 27 colors.",
+    "Wholesale-grade Vietnamese human hair, bulk and weft, priced so resellers keep the margin. MOQ 100g, ready stock, 22 colors.",
 };
 
 export default function RootLayout({
