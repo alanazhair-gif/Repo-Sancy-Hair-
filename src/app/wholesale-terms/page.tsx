@@ -55,7 +55,7 @@ const termGroups: { id: string; icon: typeof Boxes; title: string; photo: PhotoB
       { label: "Hair", value: "100% human hair, Vietnamese human hair, wholesale grade" },
       { label: "Lengths", value: "50, 55, 60, 65 and 70cm (20\" to 28\")" },
       { label: "Grades", value: "Super High Quality (SHQ) and Super Quality (Super)" },
-      { label: "Colors", value: "#1 Jet Black with its own price, plus 26 colors that share one price" },
+      { label: "Colors", value: "#1 Jet Black with its own price, plus 21 colors that share one price" },
       { label: "Lines", value: "Bulk, Straight / Genius / Flat Weft, Keratin Tip, Tape-in, Clip-in, Lace" },
     ],
   },

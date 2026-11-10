@@ -20,7 +20,7 @@ const quick = [
   { q: "MOQ?", a: "100g, 1 bundle" },
   { q: "1 kg?", a: "10 bundles" },
   { q: "Grades?", a: "Super High Quality · Super Quality" },
-  { q: "Colors?", a: "27, order by code" },
+  { q: "Colors?", a: "22, order by code" },
   { q: "First payment?", a: "PayPal works" },
   { q: "Shipping?", a: "Quoted per country" },
 ];

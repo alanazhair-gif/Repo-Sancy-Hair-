@@ -23,7 +23,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!c) return {};
   return {
     title: `${c.name} | Wholesale Vietnamese Human Hair | Sancy Hair Vietnam`,
-    description: `${c.intro} MOQ 100g, 27 colors, from our factory in Vietnam.`,
+    description: `${c.intro} MOQ 100g, 22 colors, from our factory in Vietnam.`,
   };
 }
 

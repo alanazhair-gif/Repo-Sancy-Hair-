@@ -13,13 +13,13 @@ import { lineCollectionSlug } from "@/lib/collections";
 import { colorCodes, formatUsd, jetBlack, photos, pricedProducts, whatsappHref } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "Color Chart | 27 Colors, #1 Jet Black and 26 Colors | Sancy Hair Vietnam",
-  description: "27 colors: #1 Jet Black with its own price, and 26 colors that share one price. Order by color code.",
+  title: "Color Chart | 22 Colors, #1 Jet Black and 21 Colors | Sancy Hair Vietnam",
+  description: "22 colors: #1 Jet Black with its own price, and 21 colors that share one price. Order by color code.",
 };
 
 const sections = [
   { id: "chart", label: "The chart" },
-  { id: "codes", label: "All 27 codes" },
+  { id: "codes", label: "All 22 codes" },
   { id: "color-prices", label: "Prices by color" },
   { id: "real-hair", label: "On real hair" },
   { id: "order-color", label: "Order a color" },
@@ -37,9 +37,9 @@ export default function ColorChartPage() {
       <PageHero
         crumb="Color Chart"
         eyebrow="Color chart"
-        title="27 colors,"
+        title="22 colors,"
         accent="two prices."
-        intro="#1 Jet Black has its own price. The other 26 colors share one price. Order by color code."
+        intro="#1 Jet Black has its own price. The other 21 colors share one price. Order by color code."
         photo={aboutPhotos.colorRing1}
       />
       <SectionNav items={sections} />
@@ -50,7 +50,7 @@ export default function ColorChartPage() {
           <SplitFeature photo={{ ...photos.colorChart, fit: "contain" }}>
             <p className="text-xs font-bold tracking-[0.3em] text-pink uppercase">The Sancy color chart</p>
             <h2 className="mt-4 text-3xl leading-tight font-extrabold tracking-tight sm:text-4xl">
-              One chart, <span className="font-accent font-medium text-pink italic">27 shades.</span>
+              One chart, <span className="font-accent font-medium text-pink italic">22 shades.</span>
             </h2>
             <ul className="mt-7 grid gap-3">
               <li className="rounded-2xl border border-border bg-paper p-5">
@@ -62,7 +62,7 @@ export default function ColorChartPage() {
               </li>
               <li className="rounded-2xl border border-border bg-paper p-5">
                 <p className="text-xs font-bold tracking-[0.2em] text-muted-foreground uppercase">One shared price</p>
-                <p className="mt-1 text-lg font-extrabold">26 colors</p>
+                <p className="mt-1 text-lg font-extrabold">21 colors</p>
                 <p className="text-sm text-muted-foreground">Browns, blondes, ash tones, #30, #33, #Silver and #AZ13.</p>
               </li>
             </ul>
@@ -81,7 +81,7 @@ export default function ColorChartPage() {
       {/* All codes */}
       <section id="codes" className="scroll-mt-32 bg-paper py-20 max-sm:py-12 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionIntro eyebrow="All 27 codes" title="Pick by code," accent="in chart order." />
+          <SectionIntro eyebrow="All 22 codes" title="Pick by code," accent="in chart order." />
           <div className="mt-12 grid gap-4 max-sm:mt-7 max-sm:gap-3 lg:grid-cols-[1fr_3fr]">
             <Reveal className="flex flex-col rounded-[1.75rem] border-2 border-pink bg-white p-5 max-sm:grid max-sm:grid-cols-[3.5rem_1fr_auto] max-sm:items-center max-sm:gap-x-4 max-sm:rounded-2xl max-sm:p-3">
               <span className="aspect-square w-full rounded-2xl max-sm:row-span-2 max-sm:rounded-xl" style={{ background: jetBlack.swatch }} aria-hidden="true" />
@@ -118,7 +118,7 @@ export default function ColorChartPage() {
                   <tr className="border-b border-white/10 bg-white/[0.04] text-xs font-bold tracking-[0.15em] text-white/50 uppercase max-sm:text-[0.6rem] max-sm:tracking-[0.1em]">
                     <th scope="col" className="px-5 py-4 max-sm:px-3 max-sm:py-3">Line</th>
                     <th scope="col" className="px-5 py-4 text-right max-sm:px-2 max-sm:py-3">#1 Jet Black</th>
-                    <th scope="col" className="px-5 py-4 text-right max-sm:px-3 max-sm:py-3">26 colors</th>
+                    <th scope="col" className="px-5 py-4 text-right max-sm:px-3 max-sm:py-3">21 colors</th>
                     <th scope="col" className="px-5 py-4 text-right max-sm:hidden">
                       <span className="sr-only">Shop</span>
                     </th>

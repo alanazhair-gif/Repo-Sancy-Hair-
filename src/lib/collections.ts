@@ -320,7 +320,7 @@ export const menuGroups: MenuGroup[] = [
     href: "/shop",
     links: [
       ...groupLinks("need"),
-      { label: "26 colors, one price", href: "/color-chart" },
+      { label: "21 colors, one price", href: "/color-chart" },
       { label: "Start with 100g", href: "/wholesale-terms" },
     ],
   },
@@ -349,7 +349,7 @@ export const menuGroups: MenuGroup[] = [
     href: "/shop",
     links: [
       { label: "#1 Jet Black bundles", href: "/shop/jet-black" },
-      { label: "26 colors, one price", href: "/color-chart" },
+      { label: "21 colors, one price", href: "/color-chart" },
       { label: "Start with 1 bundle", href: "/wholesale-terms" },
     ],
   },

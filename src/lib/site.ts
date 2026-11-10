@@ -258,7 +258,7 @@ export const faqGroups: { title: string; items: Faq[] }[] = [
       },
       {
         q: "Which lengths, colors and weft types do you have?",
-        a: "Lengths are 50, 55, 60, 65 and 70cm (20\" to 28\"). There are 27 colors: #1 Jet Black, plus 26 colors that share one price. Weft comes as Straight, Flat or Genius.",
+        a: "Lengths are 50, 55, 60, 65 and 70cm (20\" to 28\"). There are 22 colors: #1 Jet Black, plus 21 colors that share one price. Weft comes as Straight, Flat or Genius.",
       },
     ],
   },
@@ -346,7 +346,7 @@ export const termRows = [
   { label: "Unit", body: "1 bundle = 100g. 1 kg = 10 bundles." },
   { label: "Lengths", body: "50, 55, 60, 65 and 70cm (20\" to 28\")." },
   { label: "Grades", body: "Super High Quality (SHQ) and Super Quality (Super)." },
-  { label: "Colors", body: "#1 Jet Black has its own price. The other 26 colors share one price." },
+  { label: "Colors", body: "#1 Jet Black has its own price. The other 21 colors share one price." },
   { label: "Payment", body: "PayPal, bank transfer or Western Union." },
   { label: "Shipping", body: "Not included in our prices. Quoted per order, for your country." },
   { label: "Samples", body: "Paid, from the same stock as bulk orders. Not deducted from your first order." },

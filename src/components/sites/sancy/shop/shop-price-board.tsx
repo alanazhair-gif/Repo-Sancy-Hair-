@@ -54,7 +54,7 @@ export function ShopPriceBoard({ notes }: { notes: Record<string, string> }) {
                 <tr className="border-b border-border bg-blush/60 text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground max-sm:text-[0.6rem] max-sm:tracking-[0.1em]">
                   <th scope="col" className="px-5 py-4 max-sm:px-3 max-sm:py-3 sm:px-6">Line</th>
                   <th scope="col" className="px-5 py-4 text-right max-sm:px-2 max-sm:py-3 sm:px-6">#1 Jet Black</th>
-                  <th scope="col" className="px-5 py-4 text-right max-sm:px-3 max-sm:py-3 sm:px-6">Colors (26)</th>
+                  <th scope="col" className="px-5 py-4 text-right max-sm:px-3 max-sm:py-3 sm:px-6">Colors (21)</th>
                   <th scope="col" className="w-12 px-5 py-4 max-sm:hidden sm:px-6"><span className="sr-only">Ask</span></th>
                 </tr>
               </thead>

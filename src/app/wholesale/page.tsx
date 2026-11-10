@@ -25,7 +25,7 @@ import {
 
 export const metadata: Metadata = {
   title: "For Wholesale | Vietnamese Human Hair, MOQ 100g | Sancy Hair Vietnam",
-  description: `${siteConfig.positioning} MOQ 100g, ready stock, 27 colors, two grades, PayPal on your first order.`,
+  description: `${siteConfig.positioning} MOQ 100g, ready stock, 22 colors, two grades, PayPal on your first order.`,
 };
 
 // Every point below comes from 02-SANCY-KNOWLEDGE.md. No volume tiers or testimonials: not confirmed yet.
@@ -36,7 +36,7 @@ const bulkColors = bulk?.fromColors ?? 0;
 const heroStats = [
   { value: "100g", label: "MOQ, 1 bundle" },
   { value: formatUsd(bulkJet), label: "Bulk from, per kg" },
-  { value: "27", label: "Colors" },
+  { value: "22", label: "Colors" },
   { value: "2", label: "Grades" },
 ];
 
@@ -62,8 +62,8 @@ const reasons = [
   {
     photo: aboutPhotos.linesLaid,
     icon: Palette,
-    title: "27 colors, two prices",
-    body: "#1 Jet Black has its own price. The other 26 colors share one price.",
+    title: "22 colors, two prices",
+    body: "#1 Jet Black has its own price. The other 21 colors share one price.",
   },
   {
     photo: aboutPhotos.officeSales,

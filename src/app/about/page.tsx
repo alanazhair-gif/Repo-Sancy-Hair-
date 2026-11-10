@@ -28,7 +28,7 @@ const atAGlance = [
   },
   {
     title: "How we price",
-    body: "Two grades, Super High Quality and Super Quality. #1 Jet Black has its own price, the other 26 colors share one.",
+    body: "Two grades, Super High Quality and Super Quality. #1 Jet Black has its own price, the other 21 colors share one.",
   },
   {
     title: "When to reach us",

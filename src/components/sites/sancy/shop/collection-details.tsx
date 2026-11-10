@@ -37,7 +37,7 @@ const specRows = (c: Collection) =>
           body:
             c.lineId === "lace" || c.customItems
               ? "Ask sales on WhatsApp"
-              : "#1 Jet Black, plus 26 colors that share one price",
+              : "#1 Jet Black, plus 21 colors that share one price",
         },
         {
           label: "Samples",

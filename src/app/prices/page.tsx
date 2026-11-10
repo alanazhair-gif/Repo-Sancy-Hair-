@@ -51,7 +51,7 @@ const factors = [
   {
     title: "Color",
     photo: aboutPhotos.bundlesColors,
-    body: `${jetBlack.code} ${jetBlack.name} has its own price. The other 26 colors share one price.`,
+    body: `${jetBlack.code} ${jetBlack.name} has its own price. The other 21 colors share one price.`,
     chips: [`Bulk #1 Jet Black from ${formatUsd(jetKg)}/kg`, `Bulk colors from ${formatUsd(colorsKg)}/kg`],
   },
   {

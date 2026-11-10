@@ -8,7 +8,7 @@ import { HeroBackdrop } from "../hero-backdrop";
 const specs = [
   { value: "100g", label: "Minimum order" },
   { value: "50-70", label: "cm, 20\" to 28\"" },
-  { value: "27", label: "Colors" },
+  { value: "22", label: "Colors" },
   { value: "2", label: "Grades" },
 ];
 
