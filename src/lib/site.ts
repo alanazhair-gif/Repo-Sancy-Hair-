@@ -21,10 +21,11 @@ export const whatsappHref = (message = "PRICE", digits = whatsappNumbers[0].digi
 
 export const instagramHref = `https://instagram.com/${siteConfig.instagram}`;
 
-// Top-level pages. Shop and Bundles & Lace have mega menus, About Us a small dropdown.
+// Top-level pages. Shop has a mega menu, About Us a dropdown. Bundles & Lace is hidden for now.
 export const navLinks = [
-  { label: "Shop", href: "/shop" },
+  { label: "Shop Extensions", href: "/shop" },
   { label: "For Wholesale", href: "/wholesale" },
+  { label: "Hair Blogs", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];
 

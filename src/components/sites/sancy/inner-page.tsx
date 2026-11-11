@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { siteAsset } from "@/lib/assets";
 import { aboutLinks, photos } from "@/lib/site";
 import { QuoteCta } from "./quote-cta";
@@ -8,7 +9,16 @@ import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
 
 // Shell for the inner pages: header, page content, "more about Sancy" links, quote form, footer.
-export function InnerPage({ current, children }: { current: string; children: React.ReactNode }) {
+// hideMoreOnPhone: skip the "More about buying from us" links on phones (short pages like the blog).
+export function InnerPage({
+  current,
+  hideMoreOnPhone = false,
+  children,
+}: {
+  current: string;
+  hideMoreOnPhone?: boolean;
+  children: React.ReactNode;
+}) {
   const more = aboutLinks.filter((l) => l.href !== current);
 
   return (
@@ -17,7 +27,7 @@ export function InnerPage({ current, children }: { current: string; children: Re
       <main className="flex-1">
         {children}
 
-        <section className="bg-paper py-20 max-sm:py-12 sm:py-24">
+        <section className={cn("bg-paper py-20 max-sm:py-12 sm:py-24", hideMoreOnPhone && "max-sm:hidden")}>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <Reveal>
               <p className="text-xs font-bold tracking-[0.3em] text-pink uppercase">About Sancy</p>

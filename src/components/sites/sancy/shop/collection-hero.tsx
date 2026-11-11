@@ -13,8 +13,12 @@ export function CollectionHero({ collection }: { collection: Collection }) {
   const count = collectionItems(collection).length;
   const siblings = siblingsOf(collection);
   const specs = [
-    { label: "Minimum order", value: "100g" },
-    collection.lineId === "lace" ? { label: "Made", value: "By hand" } : { label: "Lengths", value: "50-70cm" },
+    { label: "Minimum order", value: collection.accessory ? "Ask sales" : "100g" },
+    collection.accessory
+      ? { label: "Type", value: "Accessory" }
+      : collection.lineId === "lace"
+        ? { label: "Made", value: "By hand" }
+        : { label: "Lengths", value: "50-70cm" },
     { label: collection.lineId === "lace" ? "Styles" : "Products", value: String(count) },
     { label: "From", value: from === null ? "Quoted" : `${formatUsd(from)}/kg` },
   ];

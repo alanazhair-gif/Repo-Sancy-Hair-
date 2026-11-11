@@ -3,7 +3,7 @@
 // English color names are still waiting for approval.
 import { aboutLinks, colorCodes, jetBlack, products, type PhotoBrief, type Product } from "./site";
 
-export type MenuGroupId = "need" | "bulk" | "weft" | "keratin" | "tape" | "clip" | "lace" | "texture" | "set";
+export type MenuGroupId = "need" | "bulk" | "weft" | "keratin" | "tape" | "clip" | "lace" | "texture" | "set" | "accessories" | "others";
 
 export type Collection = {
   slug: string;
@@ -24,6 +24,8 @@ export type Collection = {
   customItems?: string[];
   // Not yet confirmed by the owner: shown on the demo, flagged for review before going live.
   pending?: boolean;
+  // Not hair sold by weight (tools, rings): no length or 100g minimum on the page.
+  accessory?: boolean;
 };
 
 export type ShopItem = {
@@ -235,6 +237,56 @@ export const collections: Collection[] = [
       customItems: items as string[],
     }),
   ),
+  // ---- Pending sub-categories (menu filled out like a full shop). NOT in 02-SANCY-KNOWLEDGE yet:
+  // each page is flagged "Demo · cần sếp xác nhận", priced on WhatsApp, with an empty photo slot.
+  ...(
+    [
+      ["bulk-straight", "Straight Bulk", "bulk", "bulk", "Straight bulk hair,", "sold by weight."],
+      ["bulk-wavy", "Wavy Bulk", "bulk", "bulk", "Wavy bulk hair,", "sold by weight."],
+      ["bulk-curly", "Curly Bulk", "bulk", "bulk", "Curly bulk hair,", "sold by weight."],
+      ["weft-hand-tied", "Hand-tied Weft", "weft", "straight-weft", "Hand-tied weft,", "in 100g bundles."],
+      ["tape-regular", "Regular Tape", "tape", "tape-in", "Regular tape-in,", "in 100g packs."],
+      ["tape-long-line", "Long Line Tape", "tape", "tape-in", "Long line tape-in,", "in 100g packs."],
+      ["tape-invisible", "Invisible Tape", "tape", "tape-in", "Invisible tape-in,", "in 100g packs."],
+      ["micro-loop", "Micro Loop", "others", "keratin-tip", "Micro loop hair,", "in 100g packs."],
+      ["ponytail", "Ponytail", "others", "clip-in", "Ponytail hair,", "made to order."],
+    ] as const
+  ).map(
+    ([slug, name, group, lineId, title, accent]): Collection => ({
+      slug,
+      name,
+      group,
+      lineId,
+      quoted: true,
+      pending: true,
+      title,
+      accent,
+      intro: `${name}. Send the length and color on WhatsApp for the price.`,
+      photo: { file: `products/${slug}.jpg`, alt: name, brief: `Ảnh ${name} trên nền sáng`, size: "1200×900" },
+      customItems: [50, 55, 60, 65, 70].map((cm) => `${name}, ${cm}cm / ${Math.round(cm / 2.5)}"`),
+    }),
+  ),
+  ...(
+    [
+      ["tape-roll", "Tape Roll", "Tape roll,", "for tape-in hair.", ["Tape Roll"]],
+      ["color-ring", "Color Ring", "Color ring,", "to match colors by code.", ["Color Ring"]],
+    ] as const
+  ).map(
+    ([slug, name, title, accent, items]): Collection => ({
+      slug,
+      name,
+      group: "accessories",
+      lineId: slug === "tape-roll" ? "tape-in" : "bulk",
+      quoted: true,
+      pending: true,
+      accessory: true,
+      title,
+      accent,
+      intro: `${name}. Ask sales on WhatsApp for the price.`,
+      photo: { file: `products/${slug}.jpg`, alt: name, brief: `Ảnh ${name} trên nền sáng`, size: "1200×900" },
+      customItems: [...items],
+    }),
+  ),
 ];
 
 export const collectionBySlug = (slug: string) => collections.find((c) => c.slug === slug);
@@ -320,6 +372,7 @@ export const menuGroups: MenuGroup[] = [
     href: "/shop",
     links: [
       ...groupLinks("need"),
+      { label: "Ready stock, 100-200g ships right away", href: "/how-to-order" },
       { label: "21 colors, one price", href: "/color-chart" },
       { label: "Start with 100g", href: "/wholesale-terms" },
     ],
@@ -335,6 +388,8 @@ export const menuGroups: MenuGroup[] = [
     href: "/shop/lace",
     links: collections.filter((c) => c.group === "lace" && c.customItems).map(toLink),
   },
+  { id: "accessories", title: "Accessories", href: "/shop/tape-roll", links: groupLinks("accessories") },
+  { id: "others", title: "Others", href: "/shop/micro-loop", links: groupLinks("others") },
   { id: "texture", title: "By texture", href: "/shop/bone-straight-bundles", links: groupLinks("texture") },
   { id: "set", title: "Bundle sets", href: "/shop/set-3-bundles", links: groupLinks("set") },
   {
@@ -360,6 +415,8 @@ const group = (id: string) => menuGroups.find((g) => g.id === id) as MenuGroup;
 export type MegaMenu = {
   label: string;
   href: string;
+  // Small icon before the label in the menu bar.
+  icon?: "shop";
   // Desktop columns; each column stacks one or more groups.
   columns: MenuGroup[][];
   promo: {
@@ -375,9 +432,15 @@ export type MegaMenu = {
 };
 
 export const shopMenu: MegaMenu = {
-  label: "Shop",
+  label: "Shop Extensions",
+  icon: "shop",
   href: "/shop",
-  columns: [[group("need"), group("weft")], [group("bulk"), group("clip")], [group("keratin")], [group("tape")]],
+  columns: [
+    [group("need"), group("weft")],
+    [group("bulk"), group("clip")],
+    [group("keratin"), group("accessories")],
+    [group("tape"), group("others")],
+  ],
   promo: {
     eyebrow: "Not sure which line?",
     title: "Every line and price,",
@@ -402,7 +465,8 @@ export const bundlesLaceMenu: MegaMenu = {
   },
 };
 
-export const megaMenus = [shopMenu, bundlesLaceMenu];
+// Bundles & Lace is hidden from the menu for now; add bundlesLaceMenu back here to show it.
+export const megaMenus = [shopMenu];
 
 // About Us, split into two groups (our story / buying from us). Links come from aboutLinks.
 const about = (href: string): MenuLink => {

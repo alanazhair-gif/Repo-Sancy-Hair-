@@ -12,7 +12,7 @@ import { MegaMenu, MobileMegaMenu } from "./shop-mega-menu";
 
 // "Shop" gets its own mega menu; the rest are plain links. About Us sits between them, as on the menu bar.
 const pageLinks = navLinks.filter((l) => l.href !== "/shop");
-const [wholesaleLink, contactLink] = pageLinks;
+const [wholesaleLink, blogLink, contactLink] = pageLinks;
 const aboutMenu = aboutMegaMenu;
 
 type LogoSources = { onLight: string | null; onDark: string | null };
@@ -105,7 +105,7 @@ export function SiteHeader({ logo }: { logo: LogoSources }) {
           {megaMenus.map((m) => (
             <MegaMenu key={m.label} menu={m} solid={solid} />
           ))}
-          {[wholesaleLink, aboutMenu, contactLink].map((link) =>
+          {[wholesaleLink, aboutMenu, blogLink, contactLink].map((link) =>
             link === aboutMenu ? (
               <MegaMenu key={link.href} menu={aboutMenu} solid={solid} />
             ) : (
@@ -114,7 +114,7 @@ export function SiteHeader({ logo }: { logo: LogoSources }) {
                 href={link.href}
                 data-header-link
                 className={cn(
-                  "rounded-full px-3 py-2 text-sm font-semibold whitespace-nowrap transition-colors xl:px-4",
+                  "rounded-full px-3 py-2 text-sm font-semibold whitespace-nowrap transition-colors lg:px-2.5 xl:px-4",
                   solid ? "hover:bg-blush hover:text-pink" : "text-white/85 hover:bg-white/10 hover:text-white",
                 )}
               >
@@ -154,7 +154,7 @@ export function SiteHeader({ logo }: { logo: LogoSources }) {
         {megaMenus.map((m) => (
           <MobileMegaMenu key={m.label} menu={m} onNavigate={() => setOpen(false)} />
         ))}
-        {[wholesaleLink, aboutMenu, contactLink].map((link) =>
+        {[wholesaleLink, aboutMenu, blogLink, contactLink].map((link) =>
           link === aboutMenu ? (
             <MobileMegaMenu key={link.href} menu={aboutMenu} onNavigate={() => setOpen(false)} />
           ) : (
@@ -162,7 +162,7 @@ export function SiteHeader({ logo }: { logo: LogoSources }) {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="block border-b border-border py-4 text-xl font-semibold"
+              className="block border-b border-border py-3 text-lg font-semibold"
             >
               {link.label}
             </Link>
@@ -172,7 +172,7 @@ export function SiteHeader({ logo }: { logo: LogoSources }) {
           href={whatsappHref()}
           target="_blank"
           rel="noopener noreferrer"
-          className="mt-6 flex items-center justify-center gap-2 rounded-full bg-pink py-3 text-sm font-semibold text-white"
+          className="mt-5 flex items-center justify-center gap-2 rounded-full bg-pink py-3 text-sm font-semibold text-white"
         >
           <WhatsAppIcon className="size-4" />
           Send &quot;PRICE&quot; on WhatsApp

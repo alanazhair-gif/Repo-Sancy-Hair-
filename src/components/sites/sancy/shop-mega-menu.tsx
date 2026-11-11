@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ArrowUpRight, ChevronDown, ShoppingBag } from "lucide-react";
 import type { MegaMenu as MegaMenuConfig, MenuGroup } from "@/lib/collections";
 import { cn } from "@/lib/utils";
 import { whatsappHref } from "@/lib/site";
@@ -62,12 +62,13 @@ export function MegaMenu({ menu, solid }: { menu: MegaMenuConfig; solid: boolean
         data-header-link
         aria-haspopup="true"
         className={cn(
-          "inline-flex items-center gap-1 rounded-full px-3 py-2 text-sm font-semibold whitespace-nowrap transition-colors xl:px-4",
+          "inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-sm font-semibold whitespace-nowrap transition-colors lg:px-2.5 xl:px-4",
           solid
             ? "group-hover/mega:bg-blush group-hover/mega:text-pink"
             : "text-white/85 group-hover/mega:bg-white/10 group-hover/mega:text-white",
         )}
       >
+        {menu.icon === "shop" && <ShoppingBag className="size-4" aria-hidden="true" />}
         {menu.label}
         <ChevronDown className="size-3.5 transition-transform group-hover/mega:rotate-180" aria-hidden="true" />
       </Link>
@@ -132,16 +133,19 @@ export function MobileMegaMenu({
   menu,
   onNavigate,
 }: {
-  menu: Pick<MegaMenuConfig, "label" | "href" | "columns">;
+  menu: Pick<MegaMenuConfig, "label" | "href" | "columns" | "icon">;
   onNavigate: () => void;
 }) {
   return (
     <details className="group/m border-b border-border">
-      <summary className="flex cursor-pointer list-none items-center justify-between py-4 text-xl font-semibold [&::-webkit-details-marker]:hidden">
-        {menu.label}
-        <ChevronDown className="size-5 text-pink transition-transform group-open/m:rotate-180" aria-hidden="true" />
+      <summary className="flex cursor-pointer list-none items-center justify-between py-3 text-lg font-semibold [&::-webkit-details-marker]:hidden">
+        <span className="flex items-center gap-2.5">
+          {menu.icon === "shop" && <ShoppingBag className="size-5 text-pink" aria-hidden="true" />}
+          {menu.label}
+        </span>
+        <ChevronDown className="size-4 text-pink transition-transform group-open/m:rotate-180" aria-hidden="true" />
       </summary>
-      <div className="grid gap-5 pb-5">
+      <div className="grid gap-4 pb-4">
         <Link href={menu.href} onClick={onNavigate} className="text-sm font-bold text-pink">
           See all
         </Link>

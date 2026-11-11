@@ -12,11 +12,13 @@ type PageHeroProps = {
   accent: string;
   intro: string;
   photo?: PhotoBrief;
+  // Phones only: drop the photo so the page content starts on the first screen.
+  hidePhotoOnPhone?: boolean;
   children?: React.ReactNode;
 };
 
 // Dark top band for inner pages. id="top" lets the header switch to solid on scroll.
-export function PageHero({ crumb, eyebrow, title, accent, intro, photo, children }: PageHeroProps) {
+export function PageHero({ crumb, eyebrow, title, accent, intro, photo, hidePhotoOnPhone = false, children }: PageHeroProps) {
   return (
     <section id="top" className="grain relative overflow-hidden bg-ink text-white">
       <HeroBackdrop />
@@ -39,7 +41,7 @@ export function PageHero({ crumb, eyebrow, title, accent, intro, photo, children
           {children}
         </Reveal>
         {photo && (
-          <Reveal delay={120}>
+          <Reveal delay={120} className={hidePhotoOnPhone ? "max-sm:hidden" : undefined}>
             <PhotoSlot
               photo={photo}
               sizes="(min-width: 1024px) 40vw, 92vw"

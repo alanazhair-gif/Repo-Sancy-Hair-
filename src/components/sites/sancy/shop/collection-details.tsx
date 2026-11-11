@@ -11,7 +11,13 @@ import { Reveal } from "../reveal";
 
 // Lace is priced and sized per order, so only the rows we know apply to it.
 const specRows = (c: Collection) =>
-  c.lineId === "lace"
+  c.accessory
+    ? [
+        { label: "Type", body: "Accessory, not hair sold by weight" },
+        { label: "Price", body: "Quoted per order on WhatsApp" },
+        { label: "Minimum order", body: "Ask sales on WhatsApp" },
+      ]
+    : c.lineId === "lace"
     ? [
         {
           label: "Hair",
@@ -48,7 +54,9 @@ const specRows = (c: Collection) =>
 const faqs = (c: Collection) => [
   {
     q: "What is the minimum order?",
-    a: "100g, which is 1 bundle. 100-200g usually ships right away from stock.",
+    a: c.accessory
+      ? "Ask sales on WhatsApp for this item."
+      : "100g, which is 1 bundle. 100-200g usually ships right away from stock.",
   },
   {
     q: "Are these the final prices?",
